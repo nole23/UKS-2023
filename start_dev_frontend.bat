@@ -1,3 +1,2 @@
-cd ./Public
-
-npm install && ng serve
+::Skripta koja pokrece client side
+cd ./Public&& ng serve

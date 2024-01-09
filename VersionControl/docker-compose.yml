@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes: 
+            - .:/app
+        ports:
+            - "8000:8000"
+        environment:
+            - DEBUG=1
+            - SECRET_KEY=django-insecure-p4yf!0n(8tkp80bm-gxjknk24cvwtf41f=0j0)w8mr)u)9r5l*
+            - ALLOWED_HOSTS=localhost,127.0.0.1

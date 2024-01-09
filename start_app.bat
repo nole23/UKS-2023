@@ -1,0 +1,2 @@
+::Skripta koja kreira Angular bundle i iskopira ga u Django projekat zatim startuje django projekat koji se kao web resources korsti Angular bundle
+cd ./Public&& npm run build:prod&& cd ../VersionControl&& python manage.py runserver
