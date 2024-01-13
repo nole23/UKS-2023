@@ -16,9 +16,13 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = os.environ.get("DEBUG")
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+#DEBUG = os.environ.get("DEBUG")
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
+
+SECRET_KEY = 'django-insecure-p4yf!0n(8tkp80bm-gxjknk24cvwtf41f=0j0)w8mr)u)9r5l*'
+DEBUG = True
+ALLOWED_HOSTS = []
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
@@ -35,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'issues',
+    'files',
+    'repository',
+    'statistic'
 ]
 
 MIDDLEWARE = [
