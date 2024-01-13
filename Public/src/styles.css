@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* u vašem komponentu.css (ili .scss) fajlu */
+
+.button-with-spinner {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db; /* Boja dugmeta */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+  
+.button-with-spinner:hover {
+    background-color: #2980b9; /* Boja dugmeta prilikom hover-a */
+}
+  
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-top: 3px solid #fff;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+}
