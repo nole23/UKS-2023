@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -17,15 +18,19 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService,
+    private router: Router) {}
 
   login(): void {
     if (this._isCheckData()) {
-      this.authService.login(this.username, this.password).subscribe((res: string) => {
-        // Ovde možete obraditi odgovor sa servera, npr. čuvanjem tokena u lokalnom skladištu
-        console.log('Login successful', res);
+      this.authService.login(this.username, this.password).subscribe((res: any) => {
+        if (!res.status) {
+          this.toastr.info(res.message);
+        } else {
+          this.router.navigate(['']);
+        }
       }, (error: string) => {
-        console.error('Login failed', error);
+        this.toastr.error(error);
       });
     }
   }

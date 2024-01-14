@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
       timeOut: 5000,
       extendedTimeOut: 1000,
       // druge opcije...
-    })
+    }),
+    HttpClientModule
   ],
   providers: [
     AuthService
