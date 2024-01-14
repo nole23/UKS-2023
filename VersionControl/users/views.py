@@ -36,3 +36,18 @@ class Login(APIView):
         self.res.addItem(login)
 
         return self.res.createResponse(status=200)
+
+class Registration(APIView):
+    user = UserService()
+
+    def __init__(self):
+        self.res = ResponsObject()
+
+    def post(self, request):
+        data = decode_body(request.body)
+        registration = self.user.registration(data)
+        print(registration)
+        if (registration['message'] == "FALSE"):
+            self.res.addItem(registration)
+
+        return self.res.createResponse(status=200)

@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', users.Index.as_view()),
     path('login', users.Login.as_view()),
+    path('registration', users.Registration.as_view()),
 
      # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),
