@@ -14,6 +14,7 @@ import { HomeComponent } from './components/auth/home/home.component';
 import { AuthService } from './services/auth.service';
 import { PasswordTokenComponent } from './components/password-token/password-token.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
     PasswordRestartComponent,
     HomeComponent,
     PasswordTokenComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
