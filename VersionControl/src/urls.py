@@ -17,12 +17,16 @@ Including another URLconf
 from django.views.generic.base import TemplateView
 from django.contrib import admin
 from django.urls import path
+from users import views as users
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+    path('index', users.Index.as_view()),
+    path('login', users.Login.as_view()),
+    path('registration', users.Registration.as_view()),
+
      # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),
-    path(r'^$', TemplateView.as_view(template_name="ang_index.html"), name='home')
+    #path(r'^$', TemplateView.as_view(template_name="ang_index.html"), name='home')
     # endregion Templateview
 ]
