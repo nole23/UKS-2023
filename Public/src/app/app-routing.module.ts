@@ -7,6 +7,7 @@ import { PasswordRestartComponent } from './components/password-restart/password
 import { PasswordTokenComponent } from './components/password-token/password-token.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { HomeComponent } from './components/auth/home/home.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'restart-password', component: PasswordRestartComponent, canActivateChild: [authGuardChild] },
   { path: 'paswword-token', component: PasswordTokenComponent, canActivateChild: [authGuardChild] },
   { path: 'new-password', component: NewPasswordComponent, canActivateChild: [authGuardChild] },
+  { path: 'registration', component: RegistrationComponent, canActivateChild: [authGuardChild] },
   { path: '**', component: ErrorComponent },
 ];
 

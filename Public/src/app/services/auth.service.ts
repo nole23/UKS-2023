@@ -31,6 +31,16 @@ export class AuthService {
       }))
   }
 
+  registration(firstName: string, lastName: string, password: string, email: string): any {
+    return this.http.post(this.API_URL + 'registration', {firstName: firstName, lastName: lastName, password: password, email: email})
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false, message: this._getErrorMessage(res.data)}
+        }
+        return {status: true}
+      }))
+  }
+
   restartPassword(email: string): any {
     return {status: 'success'}
   }
@@ -44,6 +54,8 @@ export class AuthService {
   }
 
   _checkResponse(res: any) {
+    if (res.message === undefined) return true;
+    
     if (res.message === 'SUCCESS') return true
 
     return false;
@@ -54,6 +66,8 @@ export class AuthService {
       return 'Sifra nije ispravna, probajte ponovo'
     } else if (message === 'USER_NOT_FOUND') {
       return 'Korisnicko ime nije ispravno, probajte ponovo'
+    } else if (message === 'NOT_SAVE_MAIL') {
+      return 'Korisnik sa ovim mailom je vec dodat u bazu, probajte restartovati sifru'
     } else {
       return 'Korisnik nije pronadjen u bazi, da li ste sigurni da su kredencijali ispravni'
     }
