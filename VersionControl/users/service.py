@@ -26,3 +26,13 @@ class UserService(AuthSerialize):
         jwt_token = jwt.encode(payload, JWT_SECRET, JWT_ALGORITHM)
 
         return {"message": "SUCCESS", "data": self.loginSerialize(user, jwt_token)}
+
+
+    def registration(self, data):
+        user = self.userModel.get_all_by_email(data['email'])
+
+        if user.count() > 0:
+            return {"message": "FALSE", "data": "NOT_SAVE_MAIL"}
+
+        self.userModel.create_new_user(data)
+        return {"message": "SUCCESS", "data": None}
