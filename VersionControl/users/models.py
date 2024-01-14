@@ -22,8 +22,12 @@ class User(models.Model):
     folderName = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
 
-    def get_by_email(self, email):
-        return User.objects.get(email=email)
+    def get_by_username(self, username):
+        try:
+            user = User.objects.get(username=username)
+            return user
+        except User.DoesNotExist:
+            return None
 
     def get_all_by_email(self, email):
         return User.objects.filter(email__exact=email)
