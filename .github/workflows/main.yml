@@ -1,0 +1,73 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20.10.0
+
+    - name: Install Dependencies for Angular
+      run: |
+        cd Public
+        npm install
+
+    - name: Build Angular
+      run: |
+        cd Public
+        npm run build:prod
+
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test_db
+        ports:
+        - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12.1
+
+    - name: Activate Python Virtual Environment
+      run: |
+        cd ..&& cd VersionControl
+        python -m venv env
+        source env/bin/activate
+
+    - name: Install Django Dependencies
+      run: |
+        cd path/to/django/app
+        pip install -r requirements.txt
+
+    - name: Run Django Migrations
+      run: |
+        cd VersionControl
+        python manage.py migrate
+
+    - name: Run Django Tests
+      run: |
+        cd VersionControl
+        python manage.py test
