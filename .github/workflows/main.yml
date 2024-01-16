@@ -53,7 +53,7 @@ jobs:
 
     - name: Activate Python Virtual Environment
       run: |
-        cd ..&& cd VersionControl
+        cd VersionControl
         python -m venv env
         source env/bin/activate
 
