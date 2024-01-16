@@ -59,7 +59,7 @@ jobs:
 
     - name: Install Django Dependencies
       run: |
-        cd path/to/django/app
+        cd VersionControl
         pip install -r requirements.txt
 
     - name: Run Django Migrations
