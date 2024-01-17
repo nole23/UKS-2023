@@ -1,0 +1,15 @@
+.navbar-nav .dropdown-menu {
+    position: absolute!important;
+    background: #212529;
+}
+
+.dropdown-item {
+    color: #fff
+}
+
+.thin-line {
+    display: block;
+    border-top: 1px solid #ccc; /* Boja linije (siva) */
+    margin-top: 10px; /* Prilagodite po potrebi */
+    margin-bottom: 10px; /* Prilagodite po potrebi */
+  }

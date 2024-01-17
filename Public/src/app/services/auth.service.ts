@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -20,7 +19,6 @@ export class AuthService {
         if (!this._checkResponse(res)) {
           return {status: false, message: this._getErrorMessage(res.data)}
         }
-        console.log(res.data.jwt)
         const user = res.data.user;
         const jwt = res.data.jwt;
 
