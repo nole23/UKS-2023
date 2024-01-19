@@ -15,6 +15,10 @@ import { AuthService } from './services/auth.service';
 import { PasswordTokenComponent } from './components/password-token/password-token.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { HeaderComponent } from './components/auth/common/header/header.component';
+import { TableComponent } from './components/auth/common/table/table.component';
+import { UsersSettingsComponent } from './components/auth/users-settings/users-settings.component';
+import { InfoComponent } from './components/auth/repositopry/info/info.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { RegistrationComponent } from './components/registration/registration.co
     HomeComponent,
     PasswordTokenComponent,
     NewPasswordComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HeaderComponent,
+    TableComponent,
+    UsersSettingsComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

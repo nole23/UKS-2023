@@ -1,0 +1,28 @@
+.list-group-item {
+    height: 120px;
+}
+
+.item-name {
+    height: 33.33%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.custom-margin {
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.description-margin {
+    font-size: 12px;
+    padding: 3px;
+    margin-right: 3px;
+}
+
+p {
+    font-size: 14px
+}
