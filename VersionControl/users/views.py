@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from common.webCommon import ResponsObject
-from users.models import User
+from users.models import User, Role
 from users.service import UserService
 from common.webCommon import decode_body
 
@@ -19,6 +19,13 @@ class Index(APIView):
         user = User(firstName="test", lastName="test", email="test@gmail.com", username="test", folderName="test", password="test")
         user.save()
 
+        role1 = Role(role_name="O")
+        role2 = Role(role_name="C")
+        role3 = Role(role_name="V")
+
+        role1.save()
+        role2.save()
+        role3.save()
         self.res.addItem({"message": "SUCCESS", "data": "Test server resoponse."})
         
         return self.res.createResponse(status=200)
@@ -47,7 +54,7 @@ class Registration(APIView):
         data = decode_body(request.body)
         registration = self.user.registration(data)
         print(registration)
-        if (registration['message'] == "FALSE"):
+        if (registration['message'] != "FALSE"):
             self.res.addItem(registration)
 
         return self.res.createResponse(status=200)
