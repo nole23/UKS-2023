@@ -28,6 +28,33 @@ class ResponsObject():
     def decode_body(self, body):
         data_unicode = body.decode('utf-8')
         return json.loads(data_unicode)
+
+    def listProjectUserSerialize(self, data, isIssue=False):
+        rd = []
+        
+        for each in data:
+            rd.append({
+                'id': str(each.project.id),
+                'projectName': str(each.project.name),
+                'type': str(each.project.typeProject),
+                'typeLanguage': 'Python',
+                'typeLicense': 'MIT',
+                'dateOfModifide': str(each.project.dateCreate),
+                'descriotion': str(each.project.description)
+            })
+        return rd
+    
+    def projectUserSerialize(self, data):
+        rd = {
+                'id': str(data.id),
+                'projectName': str(data.name),
+                'type': str(data.typeProject),
+                'typeLanguage': 'Python',
+                'typeLicense': 'MIT',
+                'dateOfModifide': str(data.dateCreate),
+                'descriotion': str(data.description)
+            }
+        return rd
     
 # endregion
     

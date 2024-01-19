@@ -28,7 +28,7 @@ export class RepositoriesService {
           return {status: false}
         }
 
-        return {status: true}
+        return {status: true, data: res}
       }))
   }
 

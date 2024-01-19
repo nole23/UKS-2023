@@ -53,7 +53,9 @@ export class HomeComponent {
   getAllRepository() {
     this.repository.getAllRepository(this.userData).subscribe((res: any) => {
       if (res.status) {
-        this.allRepository = res.data;
+        let sortedItems = res.data.map((item: any) => ({...item, dateOfModifide: new Date(item.dateOfModifide)}))
+          .sort((a: any, b: any) => b.dateOfModifide.getTime() - a.dateOfModifide.getTime());
+        this.allRepository = sortedItems;
       } else {
         console.log('Nije pronasao ni jedan repozitory')
       }
@@ -67,17 +69,17 @@ export class HomeComponent {
       descriotion: this.descriptionRepository,
       typeLanguage: this.typeLanguageRepository,
       typeLicense: this.typeLicenseRepository,
-      dateOfModifide: new Date()
+      dateOfModifide: new Date(),
+      user: this.userData
     }
 
     this.repository.addNewRepository(newRepository).subscribe((res: any) => {
       if (res.status) {
-        this.allRepository.push(newRepository);
+        this.allRepository.unshift(res.data);
       } else {
         console.log('Nije uspio da dodam novi repozitorijum')
       }
     })
-    this.allRepository.push(newRepository);
   }
 
   updateUserProfile() {

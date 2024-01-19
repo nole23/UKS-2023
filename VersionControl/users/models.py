@@ -11,6 +11,13 @@ class Role(models.Model):
 
     def get_by_id(self, id):
         return Role.objects.get(id=id)
+    
+    def get_by_role_name(self, name):
+        try:
+            role = Role.objects.get(role_name=name)
+            return role
+        except Role.DoesNotExist:
+            return None
 
 # Create your models here.
 class User(models.Model):

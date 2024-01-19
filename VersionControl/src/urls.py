@@ -18,12 +18,15 @@ from django.views.generic.base import TemplateView
 from django.contrib import admin
 from django.urls import path
 from users import views as users
+from repository import views as repository
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', users.Index.as_view()),
     path('login', users.Login.as_view()),
     path('registration', users.Registration.as_view()),
+    path('all-repository/<int:id>', repository.Repository.as_view()),
+    path('new-repository', repository.Repository.as_view()),
 
      # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),
