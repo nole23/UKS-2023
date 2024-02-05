@@ -1,0 +1,43 @@
+<div style="float: left; width: 100%; margin-bottom: 10px;">
+    <div class="form-group" style="float: left; width: 100%;">
+        <span style="float: left; height:30px; width: fit-content; margin-left: 5px;">
+            <span *ngFor="let item of treeName; let i = index">
+                <span *ngIf="item !== 'master'"> / <a class="cursro-pointer" (click)="link(item)">{{item}}</a></span>
+            </span>
+            <span > / </span>
+        </span>
+
+        <input class="form-control" style="float: left; margin-left: 5px; height:30px; width: fit-content;" type="text" [(ngModel)]="nameFolder" placeholder="Name your folder...">
+        <span class="float-left" style="float: left; margin-left: 5px; height:30px; width: fit-content;"> / </span>
+        <input class="form-control" style="float: left; margin-left: 5px; height:30px; width: fit-content;" type="text" [(ngModel)]="name" placeholder="Name your file...">
+        <button class="btn btn-light" style="float: right; " (click)="cancel()">Cancel changes</button>
+    </div>
+</div>
+
+
+<div style="clear:both; width: 100%; float: left; height: auto;" class="border">
+    <div class="float-left w-100 h-40p color-background1">
+        <div class="float-left w-15 pt-2 pl-1 color-background-white">
+
+            <span class="bold font-15 color-text"><i class="fa fa-code" aria-hidden="true"></i>Edit new file</span>
+        </div>
+        <div class="float-right w-85"></div>
+    </div>
+    <div #topic contenteditable="true" [textContent]="body" (input)="body = topic.innerText" class="float-left w-100 form-control" style="height: auto; min-height: calc(90vh - 40px);">
+    </div>
+</div>
+
+<div style="clear: both; width: 100%; margin-top: 10px; margin-bottom: 10px; float: left;">
+    <div style="float: left; width: 70%;"></div>
+    <div style="float: right; width: 30%;">
+        <button (click)="createFile()" [disabled]="ngIsNull()" style="width: 70%; margin-right: 3%;" class="btn btn-success border-radius-10">
+            Commit new file
+            <span *ngIf="isSpiner">
+                <div class="spinner-border text-success" style="width: 1rem; height: 1rem;"></div>
+            </span>
+        </button>
+        <button class="btn btn-danger border-radius-10" (click)="cancel()">
+            Cancel
+        </button>
+    </div>
+</div>

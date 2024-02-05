@@ -1,0 +1,113 @@
+
+<div *ngIf="repositoryData !== null && type === null">
+    <div class="border-bottom">
+        <h3>{{repositoryData.name}} <span class="custom-margin">{{repositoryData.typeProject === 'true' ? 'Public' : 'Private'}}</span></h3> 
+    </div>
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-md-2">
+                <select class="form-select" [(ngModel)]="selectedOption" >
+                    <option *ngFor="let option of repositoryData.rootTree" value="{{option}}">{{ option.nameBranch }}</option>
+                </select>
+            </div>
+            <div class="col-md-6" style="padding: 5px;" *ngIf="treeName.length === 2">
+                <img src="../../../../../assets/branch.png" width="20px" height="20px" alt=""> <span>{{sizeList(repositoryData['rootTree'])}} Branches</span>
+            </div>
+            <div class="col-md-6" style="padding: 5px;" *ngIf="treeName.length > 2">
+                <span *ngFor="let item of treeName; let i = index">
+                    <span *ngIf="item !== 'master'"> / <a class="cursor-pointer" (click)="openMasterFolder(item)">{{item}}</a></span>
+                </span>
+                <span> /</span>
+            </div>
+            <div class="col-md-2" *ngIf="!isOpenFile">
+                <select class="form-select" name="typeRepository" id="typeRepository" style="float: right; width: 100%; margin-right: 0!important;" [(ngModel)]="type">
+                    <option [ngValue]="null" selected hidden>Add file</option>
+                    <option value="add">Add file</option>
+                    <option value="upload">Upload files</option>
+                </select>
+            </div>
+            <div class="col-md-2" style="font-size: 10px;" *ngIf="!isOpenFile">
+                <button class="btn btn-success btn-block" style="float: right; width: 100%;">Download</button>
+            </div>
+        </div>
+
+        <div class="mt-4" style="padding: 0 10px;" *ngIf="isOpenFile">
+            <div class="row" style="border: 1px solid #ddd; border-radius: 5px;">
+                <div class="col-md-12" style="width: 100%; height: 40px;">
+                    <div class="row" style="padding: 2px;">
+                        <div class="col-md-4" >
+                            <a class="cursor-pointer" style="font-size: 25px;" (click)="backToFolder()"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span></a><span style="padding: 10px; font-size: 25px;">{{fileData.name}}</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-danger" style="float: right;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-light" style="float: right;"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="border-top: 1px solid #ddd;">
+                    <div style="width: 100%; min-height: 200px;" [innerHTML]="ngParserText(fileData.cover)"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4" style="padding: 0 10px;" *ngIf="!isOpenFile">
+            <div class="row" style="border: 1px solid #ddd; border-radius: 5px;" *ngIf="selectedOption !== null">
+                <div class="col-md-12" style="background-color: #eee; width: 100%; height: 40px;">
+                    <div class="row">
+                        <div class="col-md-4" >
+                            <p style="padding: 10px; font-size: 14px;">{{repositoryData.name}} <span style="font-size: 10px;">Initial project</span></p>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <p style="padding: 10px; font-size: 14px; float: right;">Datum komitovanja</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="border-top: 1px solid #ddd;" *ngFor="let file of childrenFolder.files">
+                    <div class="row">
+                        <div class="col-md-4" >
+                            <div style="padding: 5px 10px 5px 1px">
+                                <a class="cursor-pointer" (click)="openFile(file)">
+                                    <span style="font-size: 14px;"> <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i> {{file.name}}</span>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding: 10px 10px 5px 1px">
+                            <p style="font-size: 14px;">Initial project</p>
+                        </div>
+                        <div class="col-md-4" style="padding: 10px 10px 5px 1px; ">
+                            <p style="font-size: 14px; float: right;">{{timeAgo(file.dateCreate)}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="border-top: 1px solid #ddd;" *ngFor="let file of childrenFolder.childrenFolder">
+                    <div class="row">
+                        <div class="col-md-4" >
+                            <div style="padding: 5px 10px 5px 1px">
+                                <a class="cursor-pointer" (click)="openFolder(file)">
+                                    <span style="font-size: 14px;"><i class="fa fa-folder-o fa-2x" aria-hidden="true"></i> {{file.nameNode}}</span>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding: 10px 10px 5px 1px">
+                            <p style="font-size: 14px;">Initial project </p>
+                        </div>
+                        <div class="col-md-4" style="padding: 10px 10px 5px 1px; ">
+                            <p style="font-size: 14px; float: right;">{{timeAgo(file.dateCreate)}}</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div *ngIf="type === 'add'">
+    <app-add-files [treeName]="treeName" (notifyParent)="onEmit($event)"></app-add-files>
+    <!-- <app-add-files [list_project]="list_project" [tree]="tree" [branch]="branch" (emit)="onEmitClose($event)"> -->
+</div>

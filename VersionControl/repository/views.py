@@ -24,7 +24,19 @@ class Repository(APIView):
         userData = repositoryData['user']
         
         returnData = self.repositoryService.createRepository(repositoryData, userData)
-        print(returnData['project'])
+
         self.res.addItem(returnData['project'])
+
+        return self.res.createResponse(status=200)
+
+class RepositoryData(APIView):
+    repositoryService = RepositoryService()
+
+    def __init__(self):
+        self.res = ResponsObject()
+    
+    def get(self, request, id):
+        repository = self.repositoryService.getRepositoryById(id)
+        self.res.addItem(repository)
 
         return self.res.createResponse(status=200)

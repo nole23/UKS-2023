@@ -53,7 +53,7 @@ class Registration(APIView):
     def post(self, request):
         data = decode_body(request.body)
         registration = self.user.registration(data)
-        print(registration)
+
         if (registration['message'] != "FALSE"):
             self.res.addItem(registration)
 
