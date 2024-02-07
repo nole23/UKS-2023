@@ -13,7 +13,7 @@ class ChildrenTree(models.Model):
     date_create = models.DateTimeField(null=True, blank=True)
     user_create = models.ForeignKey(User, on_delete=models.CASCADE)
     files = models.ManyToManyField(Files, blank=True)
-    children_folder = models.ManyToManyField(
+    childrenFolder = models.ManyToManyField(
         'self', blank=True, symmetrical=False, related_name='childrenTree')
 
 

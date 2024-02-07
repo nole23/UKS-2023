@@ -5,6 +5,7 @@ from datetime import datetime
 from django.core.files.base import ContentFile
 from files.models import Files
 from statistic.models import Statistic
+from issues.models import Issue
 
 class RepositoryService():
     listProjectModel = ListProjectUser()
@@ -13,6 +14,7 @@ class RepositoryService():
     rootTree = RootTree()
     project = Project()
     roleModel = Role()
+    issuesMode = Issue()
 
     def getAllByUser(self, id):
         user = self.userModel.get_by_id(id)
@@ -55,3 +57,13 @@ class RepositoryService():
             project=project, files=files, dateCreate=datetime.now())
         
         return {"message": "SUCCESS", "project": self.responseObject.projectUserSerialize(project)}
+
+    def getRepositoryById(self, id):
+        listProject = self.listProjectModel.filter_by_id(id)
+        
+        project = listProject[0].project
+
+        issues = self.issuesMode.filter_issue(project)
+        projectRest = self.responseObject.projectSerialize(project, issues, listProject)
+
+        return {"message": "SUCCESS", "project": projectRest}

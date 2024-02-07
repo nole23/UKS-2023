@@ -10,6 +10,17 @@ export class RepositoriesService {
 
   constructor(private http: HttpClient) { }
 
+  getRepositoryById(id: string): any {
+    return this.http.get(this.API_URL + 'repository/' + id )
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false};
+        }
+
+        return {status: true, data: res.project};
+      }))
+  }
+
   getAllRepository(user: any): any {
     return this.http.get(this.API_URL + 'all-repository/' + user.id)
       .pipe(map((res: any) => {
@@ -23,6 +34,17 @@ export class RepositoriesService {
 
   addNewRepository(repository: any): any {
     return this.http.post(this.API_URL + 'new-repository', repository)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res}
+      }))
+  }
+
+  saveFile(file: any) {
+    return this.http.post(this.API_URL + 'files', file)
       .pipe(map((res: any) => {
         if (!this._checkResponse(res)) {
           return {status: false}

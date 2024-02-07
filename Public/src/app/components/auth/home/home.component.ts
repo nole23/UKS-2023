@@ -32,6 +32,10 @@ export class HomeComponent {
     this.getUser();
   }
 
+  ngOnInit(): void {
+    localStorage.removeItem('project');
+  }
+
   getUser() {
     this.userData = this.user.getUser();
     this.getUserOtherInformation();

@@ -18,7 +18,14 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HeaderComponent } from './components/auth/common/header/header.component';
 import { TableComponent } from './components/auth/common/table/table.component';
 import { UsersSettingsComponent } from './components/auth/users-settings/users-settings.component';
-import { InfoComponent } from './components/auth/repositopry/info/info.component';
+import { CodeComponent } from './components/auth/repository/code/code.component';
+import { IssuesComponent } from './components/auth/repository/issues/issues.component';
+import { PullRequestesComponent } from './components/auth/repository/pull-requestes/pull-requestes.component';
+import { SettingsComponent } from './components/auth/repository/settings/settings.component';
+import { RepositoryComponent } from './components/auth/repository/repository/repository.component';
+import { StatisticComponent } from './components/auth/repository/statistic/statistic.component';
+import { MenuComponent } from './components/auth/repository/menu/menu.component';
+import { AddFilesComponent } from './components/auth/repository/add-files/add-files.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,14 @@ import { InfoComponent } from './components/auth/repositopry/info/info.component
     HeaderComponent,
     TableComponent,
     UsersSettingsComponent,
-    InfoComponent
+    CodeComponent,
+    IssuesComponent,
+    PullRequestesComponent,
+    SettingsComponent,
+    RepositoryComponent,
+    StatisticComponent,
+    MenuComponent,
+    AddFilesComponent
   ],
   imports: [
     BrowserModule,

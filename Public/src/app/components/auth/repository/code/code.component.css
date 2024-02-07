@@ -1,0 +1,25 @@
+.custom-margin {
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+a {
+    color: inherit; /* Postavlja boju teksta linka da nasleđuje boju teksta roditeljskog elementa */
+    text-decoration: none; /* Uklanja podvlačenje */
+}
+
+a:hover {
+    color: green; /* Boja teksta prilikom hover-a */
+    text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-pointer:hover {
+    color: green; /* Boja teksta prilikom hover-a */
+    text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
