@@ -10,6 +10,16 @@ export class RepositoriesService {
 
   constructor(private http: HttpClient) { }
 
+  getIsueByRepository(id: string) {
+    return this.http.get(this.API_URL + 'issues/' + id)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+        return {status: true, data: res.data}
+      }))
+  }
+
   getRepositoryById(id: string): any {
     return this.http.get(this.API_URL + 'repository/' + id )
       .pipe(map((res: any) => {
@@ -51,6 +61,83 @@ export class RepositoriesService {
         }
 
         return {status: true, data: res}
+      }))
+  }
+
+  filter(status: any, user: any, projectId: any, params: any) {
+    return this.http.get(this.API_URL + 'filter/' + status + '/' + user + '/' + params + '/' + projectId)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res}
+      }))
+  }
+
+  saveIssue(item: any) {
+    return this.http.post(this.API_URL + 'add-issue', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res}
+      }))
+  }
+
+  getAllCommentByIssue(id: any) {
+    return this.http.get(this.API_URL + 'issue/' + id)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
+      }))
+  }
+
+  saveIssueComment(item: any) {
+    return this.http.post(this.API_URL + 'add-issue-comment', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res}
+      }))
+  }
+
+  closeIssues(item: any) {
+    return this.http.put(this.API_URL + 'close-issue', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
+      }))
+  }
+
+  assignedIssue(item: any) {
+    return this.http.put(this.API_URL + 'assigne-issue', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
+      }))
+  }
+
+  updateIssue(item: any) {
+    return this.http.put(this.API_URL + 'update-issue', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
       }))
   }
 

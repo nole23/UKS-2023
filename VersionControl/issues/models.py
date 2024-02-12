@@ -40,7 +40,7 @@ class Issue(models.Model):
             description=data['description'],
             project=project,
             user=user,
-            date_create=datetime.now(),
+            dateCreate=datetime.now(),
             labels=data['labels']
         )
         return issue
