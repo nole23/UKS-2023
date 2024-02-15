@@ -68,9 +68,75 @@ class ResponsObject():
             'dateClose': str(data.dateClose),
             'typeProject': data.typeProject,
             'rootTree': self.rootTreeSeriallize(data.rootTree.all()),
-            # 'issue': issuesSerialize(issuesData) if issuesData != None else None,
+            'issue': self.issuesSerialize(issuesData) if issuesData != None else None,
             'listUser': self.listUserSerialize(listProjectData) if listProjectData != None else None
         }
+    
+    def issuesSerialize(self, data):
+        rd = []
+        for each in data:
+            rd.append({
+                'id': str(each.id),
+                'name': each.name,
+                'description': each.description,
+                'status': each.status,
+                'dateCreate': str(each.dateCreate),
+                'user': self.userSerialize(each.user),
+                'assigned': self.assignedSerialize(each.assigned.all()),
+                'labels': each.labels
+            })
+        return rd
+    
+    def issueSerialize(self, data):
+        return {
+            'id': str(data.id),
+            'name': data.name,
+            'description': data.description,
+            'status': data.status,
+            'user': self.userSerialize(data.user),
+            'dateCreate': str(data.dateCreate),
+            'assigned': self.userFirstSerialize(data.assigned.all()),
+            'labels': data.labels
+
+        }
+    
+    def issuesCommentSerialize(self, data):
+        rd = []
+        for each in data:
+            rd.append(self.issueCommentSerialize(each))
+        return rd
+    
+    def issueCommentSerialize(self, data):
+        return {
+            'id': str(data.id),
+            'comment': data.comment,
+            'issue': self.issueSerialize(data.issue),
+            'user': self.userSerialize(data.user),
+            'dateCreate': str(data.dateCreate),
+            'typeComment': data.typeComment
+        }
+    
+    def userFirstSerialize(self, data):
+        dt = []
+        for each in data:
+            dt.append({
+                'id': str(each.id),
+                'firstName': each.firstName,
+                'lastName': each.lastName,
+                'username': each.username
+            })
+        return dt
+    
+    def assignedSerialize(self, data):
+        rd = []
+        for each in data:
+            rd.append({
+                'id': str(each.id),
+                'firstName': each.firstName,
+                'lastName': each.lastName,
+                'username': each.username
+            })
+        return rd
     
     def listUserSerialize(self, data, notList=False):
         if notList == False:

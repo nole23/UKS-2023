@@ -26,6 +26,8 @@ import { RepositoryComponent } from './components/auth/repository/repository/rep
 import { StatisticComponent } from './components/auth/repository/statistic/statistic.component';
 import { MenuComponent } from './components/auth/repository/menu/menu.component';
 import { AddFilesComponent } from './components/auth/repository/add-files/add-files.component';
+import { AddIssuesComponent } from './components/auth/repository/add-issues/add-issues.component';
+import { OpenIssuesComponent } from './components/auth/repository/open-issues/open-issues.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { AddFilesComponent } from './components/auth/repository/add-files/add-fi
     RepositoryComponent,
     StatisticComponent,
     MenuComponent,
-    AddFilesComponent
+    AddFilesComponent,
+    AddIssuesComponent,
+    OpenIssuesComponent
   ],
   imports: [
     BrowserModule,

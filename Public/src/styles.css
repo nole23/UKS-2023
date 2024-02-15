@@ -43,3 +43,16 @@ body {font-family: Arial, Helvetica, sans-serif;}
 p {
     font-size: 12px;
 }
+
+.red-class {
+    color: red;
+}
+.green-class {
+    color: green;
+}
+.blue-class {
+    color: blue;
+}
+.test-class {
+    color: black;
+}

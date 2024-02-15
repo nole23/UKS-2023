@@ -25,14 +25,15 @@ export class RepositoryComponent {
     this.route.paramMap.subscribe(params => {
       
       let idRepository = params.get('repositoryId');
-      this.getRpository(idRepository, params.get('type'));
-      
+      const type = params.get('type');
+      this.getRpository(idRepository, type);
     });
   }
 
   getRpository(id: any, type: any) {
     this.repository.getRepositoryById(id).subscribe((res: any) => {
       if (res.status) {
+        console.log(res.data)
         localStorage.setItem('project', JSON.stringify(res.data));
         this.tab = type;
       } else {

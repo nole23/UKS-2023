@@ -2,7 +2,6 @@ from rest_framework.views import APIView
 from repository.service import RepositoryService
 from common.webCommon import ResponsObject
 from common.webCommon import decode_body
-import json
 
 # Create your views here.
 

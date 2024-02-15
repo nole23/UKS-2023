@@ -1,0 +1,55 @@
+<div class="container mt-5" style="padding-top: 20px;">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="form-group float-left w-70 border-create">
+                <label for="username" class="w-100">Issue name</label>
+                <input type="text" class="form-control" name="name" id="name" [(ngModel)]="name" placeholder="Issue name...">
+
+                <br>
+                <label for="password" class="w-100">Description</label>
+                <textarea class="form-control" rows="5" id="comment" name="text" [(ngModel)]="description" placeholder="Leave a comment..."></textarea>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group float-left w-30 pl-3">
+                <label for="username" class="w-100">Labels</label>
+                <nav class="navbar navbar-expand-sm pl-0 pt-0">
+
+                    <div class="dropdown">
+                        <a class="nav-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span *ngIf="addLabels === null"> None yet </span>
+                            <span *ngIf="addLabels !== null"> <i class="fa fa-circle"
+                                [ngClass]="addLabels.color" aria-hidden="true"></i> {{addLabels.name}}
+                        </span>
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 300px;">
+                            <div *ngFor="let item of labels">
+                                <a class="dropdown-item" style="height: 50px; cursor: pointer" (click)="setLabels(item)">
+                                    <span><i class="fa fa-circle" [ngClass]="item.color" aria-hidden="true"></i> {{item.name}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+                <hr>
+            </div>
+        </div>
+        <div class="col-sm-12 p-2 reg-bord" >
+            <form>
+                <div class="float-left w-100">
+
+                    
+                </div>
+
+                <button type="submit" class="btn btn-primary margin-top float-right" style="float: right;" (click)="addIssue()">
+                    Submit new issue
+                    <span >
+                        <div class="spinner-border text-success" style="width: 1rem; height: 1rem;"></div>
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
