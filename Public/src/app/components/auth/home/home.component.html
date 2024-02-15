@@ -1,1 +1,117 @@
-<p>home works!</p>
+<!-- <app-header [sharedData]="parentData"></app-header> -->
+<div class="container mt-4">
+    <div class="row">
+
+        <!-- Right side with user information -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/6009/6009939.png" class="card-img-top" alt="User Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{userData.firstName}} {{userData.lastName}}</h5>
+                    <p class="card-text">{{userData.username}}</p>
+                    <!-- Add more user information here -->
+                    <a href="#" class="btn btn-success" style="width: 100%" data-bs-toggle="modal" data-bs-target="#myModal1">Edit Profile</a>
+                    <span class="thin-line"></span>
+                    <p class="card-text">Repozitorijuma: {{allRepository.length}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Left side with charts -->
+        <div class="col-md-8">
+            <!-- Your charts go here -->
+            <div class="info-container">
+                <div class="button-container" style="float: left; width: 100%; border-bottom: 1px solid #ddd;">
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="float: right; margin-bottom: 5px;">Novi projekat</button>
+                </div>
+                <div style="float: left; width: 100%; margin-top: 5px;">
+                    <ul>
+                        <app-table class="list-group list-group-flush" *ngFor="let repository of allRepository" [repository]="repository"></app-table>
+                    </ul>
+                </div>
+              </div>
+            
+            <!-- Add your chart components or content here -->
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Dodajte novi projekat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                    <label for="nameRepository" class="form-label">Naziv projekta</label>
+                    <input type="text" class="form-control" id="nameRepository" [(ngModel)]="nameRepository" [ngModelOptions]="{standalone: true}" placeholder="Naziv projekta" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionRepository" class="form-label">Opis projekta</label>
+                    <input type="text" class="form-control" id="descriptionRepository" [(ngModel)]="descriptionRepository" [ngModelOptions]="{standalone: true}"  placeholder="Opis projekta" required>
+                </div>
+                <div class="mb-3">
+                    <label for="typeRepository" class="form-label">Izaberite tip projekta:</label>
+                    <select class="form-select" name="typeRepository" id="typeRepository" [(ngModel)]="typeRepository" [ngModelOptions]="{standalone: true}" required>
+                        <option *ngFor="let option of options" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="typeLanguageRepository" class="form-label">Izaberite jezik projekta:</label>
+                    <select class="form-select" name="typeLanguageRepository" id="typeLanguageRepository" [(ngModel)]="typeLanguageRepository" [ngModelOptions]="{standalone: true}" required >
+                        <option *ngFor="let option of optionsLanguage" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="typeLicenseRepository" class="form-label">Izaberite licencu projekta:</label>
+                    <select class="form-select" name="typeLicenseRepository" id="typeLicenseRepository" [(ngModel)]="typeLicenseRepository" [ngModelOptions]="{standalone: true}" required >
+                        <option *ngFor="let option of licenseRepository" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Odustati</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="createNewProject()">Kreirajte projekat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Modal1 -->
+<div class="modal fade" id="myModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Azurirajte profil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Ime</label>
+                    <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" placeholder="Azurirajte ime" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Prezime</label>
+                    <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}"  placeholder="Azurirajte prezime" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Sifra</label>
+                    <input type="text" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  placeholder="Kreirajte novu sifru" required>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Odustati</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateUserProfile()">Azurirajte profil</button>
+        </div>
+      </div>
+    </div>
+  </div>

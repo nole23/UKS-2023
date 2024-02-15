@@ -15,6 +15,19 @@ import { AuthService } from './services/auth.service';
 import { PasswordTokenComponent } from './components/password-token/password-token.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { HeaderComponent } from './components/auth/common/header/header.component';
+import { TableComponent } from './components/auth/common/table/table.component';
+import { UsersSettingsComponent } from './components/auth/users-settings/users-settings.component';
+import { CodeComponent } from './components/auth/repository/code/code.component';
+import { IssuesComponent } from './components/auth/repository/issues/issues.component';
+import { PullRequestesComponent } from './components/auth/repository/pull-requestes/pull-requestes.component';
+import { SettingsComponent } from './components/auth/repository/settings/settings.component';
+import { RepositoryComponent } from './components/auth/repository/repository/repository.component';
+import { StatisticComponent } from './components/auth/repository/statistic/statistic.component';
+import { MenuComponent } from './components/auth/repository/menu/menu.component';
+import { AddFilesComponent } from './components/auth/repository/add-files/add-files.component';
+import { AddIssuesComponent } from './components/auth/repository/add-issues/add-issues.component';
+import { OpenIssuesComponent } from './components/auth/repository/open-issues/open-issues.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +38,20 @@ import { RegistrationComponent } from './components/registration/registration.co
     HomeComponent,
     PasswordTokenComponent,
     NewPasswordComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HeaderComponent,
+    TableComponent,
+    UsersSettingsComponent,
+    CodeComponent,
+    IssuesComponent,
+    PullRequestesComponent,
+    SettingsComponent,
+    RepositoryComponent,
+    StatisticComponent,
+    MenuComponent,
+    AddFilesComponent,
+    AddIssuesComponent,
+    OpenIssuesComponent
   ],
   imports: [
     BrowserModule,

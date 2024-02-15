@@ -27,6 +27,8 @@ class UserService(AuthSerialize):
 
         return {"message": "SUCCESS", "data": self.loginSerialize(user, jwt_token)}
 
+    def getUserById(self, id):
+        return self.userModel.get_by_id(id)
 
     def registration(self, data):
         user = self.userModel.get_all_by_email(data['email'])

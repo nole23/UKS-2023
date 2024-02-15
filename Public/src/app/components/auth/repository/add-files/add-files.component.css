@@ -1,0 +1,13 @@
+a {
+    color: inherit; /* Postavlja boju teksta linka da nasleđuje boju teksta roditeljskog elementa */
+    text-decoration: none; /* Uklanja podvlačenje */
+}
+
+a:hover {
+    color: #04AA6D; /* Boja teksta prilikom hover-a */
+    text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
+
+.cursro-pointer {
+    cursor: pointer;
+}

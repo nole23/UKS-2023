@@ -1,0 +1,11 @@
+<div class="container mt-4">
+    <div *ngIf="tab !== null">
+        <app-code *ngIf="tab === 'tree'"></app-code>
+        <app-issues *ngIf="tab === 'issues'"></app-issues>
+        <app-pull-requestes *ngIf="tab === 'pull'"></app-pull-requestes>
+        <app-statistic *ngIf="tab === 'statistic'"></app-statistic>
+        <app-settings *ngIf="tab === 'settings'"></app-settings>
+    </div>
+    
+</div>
+

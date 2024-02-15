@@ -1,0 +1,174 @@
+<div class="mt-5 pb-5" *ngIf="issue !== null">
+    <div class="mb-3" style="float: left; width: 100%;">
+        <div class="deleteHover" style="float: left; width: 80%;">
+            <h2>{{issue.name}} <span class="lightColor">#{{issue.id}}</span><span class="ml-3 delete"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></span></h2>
+        </div>
+        <div style="float: right; width: 20%; padding: 2px; ">
+            <button class="btn btn-light" style="float: left; width: 40%;" data-bs-toggle="modal" data-bs-target="#myModal">
+                Edit issue
+            </button>
+
+            <div class="float-right" style="float: right; width: 60%;">
+                <button class="btn btn-outline-success" style="float: left; width: 100%;" (click)="assignedUser()" [disabled]="isDisable" *ngIf="!isAssigned">
+                    Assign
+                </button>
+                <button class="btn btn-light" style="float: left; width: 100%;" [disabled]="isDisable" *ngIf="isAssigned">
+                    <span style="font-size: 12px;">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        {{issue.assigned[0].firstName + ' '}} is Assigned
+                    </span>
+                </button>
+            </div>
+
+            <div style="float: left; width: 100%; height: 40px; padding: 5px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+                <nav class="navbar navbar-expand-sm pl-0 pt-0">
+
+                    <div class="dropdown">
+                        <a class="nav-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span *ngIf="addLabels === null"> None yet </span>
+                            <span *ngIf="addLabels !== null"> <i class="fa fa-circle"
+                                [ngClass]="addLabels.color" aria-hidden="true"></i> {{addLabels.name}}
+                        </span>
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 300px;">
+                            <div *ngFor="let item of labels">
+                                <a class="dropdown-item" style="height: 50px; cursor: pointer" (click)="setLabels(item)">
+                                    <span><i class="fa fa-circle" [ngClass]="item.color" aria-hidden="true"></i> {{item.name}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </nav>
+            </div>
+            
+        </div>
+        <div style="float: left; width: 100%;">
+
+            <div style="float: left;">
+                <p><span>{{issue.user.firstName}}</span> opened this issue <span> {{timeAgo(issue.dateCreate)}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="body mb-3" style="clear:both">
+        <div class="border mb-3" style="width: 100%; border-radius: 10px;">
+            <div class="border-bottom" style="width: 100%; height: 40px; padding: 5px;">
+                <div style="float: left; font-size: 12px; margin-top: 5px;">
+                    <span>{{issue.user.firstName + ' ' + issue.user.lastName}}</span> commented on
+                    <span>{{timeAgo(issue.dateCreate)}}.</span>
+                </div>
+                <div style="float: right;" *ngIf="isOwner(issue.user)">
+                    <span style="border-radius: 5px; font-size: 12px;">Owner</span>
+                </div>
+            </div>
+            <div style="width: 100%; min-height: 40px; padding: 10px;">
+                <div style="word-wrap: break-word;">{{issue.description}}</div>
+            </div>
+        </div>
+
+        <div class="mb-3" style="width: 100%;" *ngFor="let item of issue.comments">
+            <div class="border" style="border-radius: 10px;" *ngIf="item.typeComment === 'COMMENT'">
+                <div class="border-bottom" style="width: 100%; height: 40px; padding: 5px;"  [ngClass]="item.status === 'False' ? '' : ''">
+                    <div style="float: left; font-size: 12px;">
+                        <span>{{item.user.firstName + ' ' + item.user.lastName}}</span> commented on
+                        <span>{{timeAgo(item.dateCreate)}}.</span>
+                    </div>
+                    <div style="float: right;" *ngIf="isOwner(item.user)">
+                        <span style="font-size: 12px;">Owner</span>
+                    </div>
+                </div>
+                <div style="width: 100%; min-height: 40px; padding: 10px;">
+                    <div [innerHTML]="item.comment"></div>
+                </div>
+            </div>
+
+            <div *ngIf="item.typeComment === 'AUTOGENERATE'">
+                <div class="mt-3" style="font-size: 12px;">
+                    <span *ngIf="item.comment.includes('assign')" style="margin-left: 10px;">
+                        <i class="fa fa-user-o fa-lg green-class" aria-hidden="true"></i>
+                    </span>
+                    <span *ngIf="item.comment.includes('edit')" style="margin-left: 10px;">
+                        <i class="fa fa-pencil-square-o fa-lg blue-class" aria-hidden="true"></i>
+                    </span>
+                    <span *ngIf="item.comment.includes('close')" style="margin-left: 10px;">
+                        <i class=" fa fa-exclamation-circle fa-lg red-class" aria-hidden="true"></i>
+                    </span>
+                    <span *ngIf="item.comment.includes('label')" style="margin-left: 10px;">
+                        <i class="fa fa-tag fa-lg" aria-hidden="true"></i>
+                    </span>
+                    <span
+                        style="width: 20px; height: 20px; border-radius: 50%; background-color: #fff; margin-left: 15px;">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </span>
+                    <span [innerHTML]="item.comment"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body" style="clear:both; border:1px solid #ccc; border-radius: 10px;">
+        <div class="border-bottom" style="width: 100%; padding: 10px;">
+            <div style="width: 100px; font-size: 12px;">
+                Add comment
+            </div>
+        </div>
+        <div style="width: 100%; height: 150px; padding: 5px;">
+            <textarea class="w-100 h-100" style="border:none" rows="7" [(ngModel)]="comment"></textarea>
+        </div>
+        <div style="width: 100%; float: left; margin-top: 5px;">
+            <div style="float: left; width: 50%;"></div>
+            <div style="float: right;">
+                <button class="btn btn-outline-danger" (click)="ngCloseIssue(issue)" style="margin-right: 5px;">
+                    Close Issue
+                    <!-- <span >
+                        <div class="spinner-border text-success" style="width: 1rem; height: 1rem;"></div>
+                    </span> -->
+                </button>
+                <button class="btn btn-success" (click)="ngComment()" [disabled]="isDisableAddComment()">
+                    Add comment
+                    <!-- <span >
+                        <div class="spinner-border text-success" style="width: 1rem; height: 1rem;"></div>
+                    </span> -->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal for edit issue -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{changeText(issue.name) + ' #' + issue.id}}</h4>
+                <button type="button" class="close" (click)="destroyData()" data-bs-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <span class="pl-2">Issue name</span>
+                    <input type="text" class="form-control" name="name" id="name" [(ngModel)]="issueNameHelp"
+                        placeholder="{{issueNameHelp}}">
+                </div>
+                <div>
+                    <span class="pl-2">Description</span>
+                    <textarea class="form-control" rows="5" id="comment" name="text" [(ngModel)]="issueDescriptionHelp"
+                        placeholder="{{issueDescriptionHelp}}"></textarea>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateIssue()">Save</button>
+                <button type="button" class="btn btn-light" (click)="destroyData()" data-bs-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>

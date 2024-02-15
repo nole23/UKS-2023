@@ -1,0 +1,12 @@
+
+<li class="list-group-item">
+    <div class="item-name">
+        <a [href]="'repository/' + repository.id + '/tree'" class="me-2 fw-bold">{{repository.projectName}}</a> <span class="custom-margin">{{repository.type}}</span>
+    </div>
+    <div class="item-name">
+        <p>{{repository.descriotion}}</p>
+    </div>
+    <div class="item-name">
+        <span class="description-margin">{{repository.typeLanguage}}</span> <span class="description-margin">{{repository.typeLicense}} Licenca</span> <span class="description-margin">Azurirano: {{repository.dateOfModifide | date: 'dd MMMM yyyy HH:mm'}}</span>
+    </div>
+</li>
