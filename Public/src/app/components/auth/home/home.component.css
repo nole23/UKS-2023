@@ -15,7 +15,9 @@
     text-align: center;
 }
 
-
+ul {
+  margin-left: -32px;
+}
 .register-link,
     .forgot-password-link {
       display: block;

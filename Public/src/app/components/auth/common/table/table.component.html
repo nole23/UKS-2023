@@ -1,12 +1,22 @@
 
-<li class="list-group-item">
+<li class="list-group-item" style="border-bottom: 1px solid #ddd">
     <div class="item-name">
-        <a [href]="'repository/' + repository.id + '/tree'" class="me-2 fw-bold">{{repository.projectName}}</a> <span class="custom-margin">{{repository.type}}</span>
+        <a [href]="'repository/' + repository.id + '/tree'" class="me-2 fw-bold">{{repository.projectName}}</a> <span class="custom-margin" *ngIf="repository.type === 'True'">Private</span><span class="custom-margin" *ngIf="repository.type === 'False'">Public</span>
     </div>
     <div class="item-name">
         <p>{{repository.descriotion}}</p>
     </div>
     <div class="item-name">
-        <span class="description-margin">{{repository.typeLanguage}}</span> <span class="description-margin">{{repository.typeLicense}} Licenca</span> <span class="description-margin">Azurirano: {{repository.dateOfModifide | date: 'dd MMMM yyyy HH:mm'}}</span>
+        <span class="description-margin" *ngIf="repository.typeLanguage !== ''">
+            <i class="fa fa-circle" [style]="getColor(repository.typeLanguage, 'language')" aria-hidden="true"></i> 
+            {{repository.typeLanguage}}
+        </span>
+        <span class="description-margin" [ngStyle]="{'margin-left: 5px': repository.typeLanguage === ''}" *ngIf="repository.typeLicense !== ''">
+            <i [ngClass]="getColor(repository.typeLicense, 'licenca')" class="fa fa-balance-scale" aria-hidden="true"></i>
+            {{repository.typeLicense}} Licenca
+        </span>
+        <span class="description-margin" [ngStyle]="{'margin-left: 5px': (repository.typeLanguage === '' && repository.typeLicense === '')}">
+            Azurirano: {{repository.dateOfModifide | date: 'dd MMMM yyyy HH:mm'}}
+        </span>
     </div>
 </li>
