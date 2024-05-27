@@ -14,9 +14,11 @@ import { IssuesComponent } from './components/auth/repository/issues/issues.comp
 import { PullRequestesComponent } from './components/auth/repository/pull-requestes/pull-requestes.component';
 import { SettingsComponent } from './components/auth/repository/settings/settings.component';
 import { RepositoryComponent } from './components/auth/repository/repository/repository.component';
+import { AddNewRepositoryComponent } from './components/auth/home/add-new-repository/add-new-repository.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'new', component: AddNewRepositoryComponent },
   { path: 'login', component: LoginComponent, canActivateChild: [authGuardChild] },
   { path: 'restart-password', component: PasswordRestartComponent, canActivateChild: [authGuardChild] },
   { path: 'paswword-token', component: PasswordTokenComponent, canActivateChild: [authGuardChild] },
