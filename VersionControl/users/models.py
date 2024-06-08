@@ -60,3 +60,6 @@ class User(models.Model):
 
     def filter(self, text):
         return User.objects.filter(firstNamestartswith=text) | User.objects.filter(lastNamestartswith=text) | User.objects.filter(email__startswith=text)
+    
+    def filterByText(self, text):
+        return User.objects.filter(username__startswith=text, firstName__startswith=text, lastName__startswith=text, email__startswith=text)

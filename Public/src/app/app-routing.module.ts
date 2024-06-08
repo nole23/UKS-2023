@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'restart-password', component: PasswordRestartComponent, canActivateChild: [authGuardChild] },
   { path: 'paswword-token', component: PasswordTokenComponent, canActivateChild: [authGuardChild] },
   { path: 'new-password', component: NewPasswordComponent, canActivateChild: [authGuardChild] },
-  { path: 'registration', component: RegistrationComponent, canActivate: [authGuard] },
+  { path: 'registration', component: RegistrationComponent },
   { path: 'user-settings', component: UsersSettingsComponent, canActivateChild: [authGuardChild] },
   { path: 'repository/:repositoryId/:type', component: RepositoryComponent, canActivateChild: [authGuardChild] },
   { path: 'repository/:repositoryId/:type/folder/:folderName', component: RepositoryComponent, canActivate: [authGuardChild] },

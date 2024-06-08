@@ -141,6 +141,28 @@ export class RepositoriesService {
       }))
   }
 
+  updateRepository(item: any, type: string) {
+    return this.http.put(this.API_URL + 'update-repository/' + type, item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
+      }))
+  }
+
+  addCollaborators(idUser: any, idRepository: any) {
+    return this.http.get(this.API_URL + 'add-user-repository/' + idUser + '/' + idRepository)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true}
+      }))
+  }
+
   _checkResponse(res: any) {
     if (res.message === undefined) return true;
     

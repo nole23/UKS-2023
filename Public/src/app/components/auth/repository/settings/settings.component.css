@@ -1,0 +1,18 @@
+.btn-light:hover {
+    background-color: #04AA6D !important;
+    color: #fff;
+}
+
+.test button {
+    text-align: left !important;
+}
+
+.open-btn {
+    background-color: #04AA6D !important;
+    color: #fff;
+}
+
+button {
+    border: none;
+    background: none;
+}

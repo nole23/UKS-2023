@@ -215,6 +215,12 @@ class ResponsObject():
             'username': data.username
         }
     
+    def usersSerialize(self, data):
+        us = []
+        for each in data:
+            us.append(self.userSerialize(each))
+        return us
+    
     def read_file(self, user, branch, folder, name_file):
         file_data = None
         file_location = 'media/' + name_file.name

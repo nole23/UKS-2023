@@ -58,3 +58,16 @@ class Registration(APIView):
             self.res.addItem(registration)
 
         return self.res.createResponse(status=200)
+    
+class User(APIView):
+    user = UserService()
+
+    def __init__(self):
+        self.res = ResponsObject()
+
+    def get(self, request, text):
+        print(text)
+        users = self.user.filter(text)
+        print(users)
+        self.res.addItem(users)
+        return self.res.createResponse(status=200)
