@@ -41,15 +41,19 @@ class Project(models.Model):
     description = models.CharField(max_length=150)
     dateCreate = models.DateTimeField(null=True, blank=True)
     dateClose = models.DateTimeField(null=True, blank=True)
-    typeProject = models.BooleanField(default=True)
+    typeProject = models.BooleanField(null=True, blank=True)
+    typeLicense = models.CharField(max_length=30)
+    typeLanguage = models.CharField(max_length=30)
     rootTree = models.ManyToManyField(RootTree, blank=True)
 
-    def create(self, name, description, typeProject, rootTree):
+    def create(self, name, description, typeProject, rootTree, typeLicense, typeLanguage):
         project = Project.objects.create(
             name=name,
             description=description,
             dateCreate=datetime.now(),
-            typeProject=typeProject
+            typeProject=typeProject,
+            typeLanguage=typeLanguage,
+            typeLicense=typeLicense
         )
         project.rootTree.add(rootTree)
         return project

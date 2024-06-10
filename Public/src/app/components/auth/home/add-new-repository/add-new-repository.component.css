@@ -1,0 +1,42 @@
+.new-repository {
+    width: 782px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.new-repository-header {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: #ddd;
+    border-bottom-width: 1px;
+}
+
+.new-repository-header h1 {
+    font-weight: 600;
+    margin: 0px;
+    font-size: 24px;
+}
+
+.regija {
+    border-bottom: 1px solid #ddd;
+    min-height: 65px;
+    float: left;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.left {
+    float: left;
+}
+
+.widget {
+    margin-bottom: 0;
+    font-weight: bold
+}
+
+.w-100 {
+    width: 100%;
+}

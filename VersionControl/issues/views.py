@@ -74,3 +74,14 @@ class IssuesComment(APIView):
 
         self.res.addItem(res)
         return self.res.createResponse(status=200)
+
+class IssuesLanles(APIView):
+    issueService = IssueService()
+
+    def __init__(self):
+        self.res = ResponsObject()
+    
+    def put(self, request):
+        res = self.issueService.updateLabels(request.data['issueId'], request.data['label'], request.data['userId'])
+        self.res.addItem(res)
+        return self.res.createResponse(status=200)

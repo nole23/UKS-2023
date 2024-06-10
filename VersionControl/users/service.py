@@ -2,6 +2,7 @@ from users.models import User
 from datetime import datetime, timedelta
 import jwt
 from common.webCommon import AuthSerialize
+from common.webCommon import ResponsObject 
 
 JWT_SECRET = 'secret'
 JWT_ALGORITHM = 'HS256'
@@ -9,6 +10,7 @@ JWT_EXP_DELTA_SECONDS = 84600
 
 class UserService(AuthSerialize):
     userModel = User()
+    responseObject = ResponsObject()
 
     def login(self, data):
         user = self.userModel.get_by_username(data['username'])
@@ -29,6 +31,9 @@ class UserService(AuthSerialize):
 
     def getUserById(self, id):
         return self.userModel.get_by_id(id)
+    
+    def filter(self, text):
+        return self.responseObject.usersSerialize(self.userModel.filterByText(text))
 
     def registration(self, data):
         user = self.userModel.get_all_by_email(data['email'])

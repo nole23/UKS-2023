@@ -27,9 +27,14 @@ urlpatterns = [
     path('index', users.Index.as_view()),
     path('login', users.Login.as_view()),
     path('registration', users.Registration.as_view()),
+    path('user-filter/<str:text>', users.User.as_view()),
+
     path('all-repository/<int:id>', repository.Repository.as_view()),
     path('new-repository', repository.Repository.as_view()),
     path('repository/<int:id>', repository.RepositoryData.as_view()),
+    path('update-repository/general', repository.Repository.as_view()),
+    path('repository/collaboators', repository.RepositoryData.as_view()),
+    path('add-user-repository/<int:userId>/<int:projectUd>', repository.RepositoryUser.as_view()),
 
     path('files', files.File.as_view()),
 
@@ -42,6 +47,7 @@ urlpatterns = [
 
     path('issue/<int:id>', issues.IssuesGet.as_view()),
     path('assigne-issue', issues.IssuesGet.as_view()),
+    path('update-issue-labels', issues.IssuesLanles.as_view()),
 
     # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),

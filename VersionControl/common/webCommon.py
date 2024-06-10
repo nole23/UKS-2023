@@ -36,12 +36,13 @@ class ResponsObject():
         rd = []
         
         for each in data:
+            print(each.project.typeLicense)
             rd.append({
                 'id': str(each.project.id),
                 'projectName': str(each.project.name),
                 'type': str(each.project.typeProject),
-                'typeLanguage': 'Python',
-                'typeLicense': 'MIT',
+                'typeLanguage': each.project.typeLanguage,
+                'typeLicense': each.project.typeLicense,
                 'dateOfModifide': str(each.project.dateCreate),
                 'descriotion': str(each.project.description)
             })
@@ -52,8 +53,8 @@ class ResponsObject():
                 'id': str(data.id),
                 'projectName': str(data.name),
                 'type': str(data.typeProject),
-                'typeLanguage': 'Python',
-                'typeLicense': 'MIT',
+                'typeLanguage': data.typeLanguage,
+                'typeLicense': data.typeLicense,
                 'dateOfModifide': str(data.dateCreate),
                 'descriotion': str(data.description)
             }
@@ -213,6 +214,12 @@ class ResponsObject():
             'lastName': data.lastName,
             'username': data.username
         }
+    
+    def usersSerialize(self, data):
+        us = []
+        for each in data:
+            us.append(self.userSerialize(each))
+        return us
     
     def read_file(self, user, branch, folder, name_file):
         file_data = None

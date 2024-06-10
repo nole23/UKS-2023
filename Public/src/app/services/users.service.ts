@@ -44,6 +44,17 @@ export class UsersService {
       }))
   }
 
+  filterUser(text: any) {
+    return this.http.get(this.API_URL + 'user-filter/' + text)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, users: res}
+      }))
+  }
+
   _checkResponse(res: any) {
     if (res.message === undefined) return true;
     

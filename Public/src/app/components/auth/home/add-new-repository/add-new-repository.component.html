@@ -1,0 +1,69 @@
+
+
+<div class="new-repository">
+    <div class="new-repository-header">
+        <h1>Create a new repository</h1>
+        <span>A repository contains all project files, including the revision history.</span>
+    </div>
+    
+    <span style="font-style: italic;">Required fields are marked with an asterisk (*).</span>
+    <form class="left w-100" style="margin-top: 30px;  height: 100%;">
+        <div class="mb-3 regija">
+            <div class="left w-100" >
+                <label for="nameRepository" style="width: 10%;" class="form-label widget">Owner</label>
+                <label for="nameRepository" style="width: 90%;" class="form-label widget">Repository name (*)</label>
+            </div>
+            <div class="left w-100" >
+                <span class="left" style="width: 50px; ">{{userData.username}} /</span>
+                <input type="text" style="width: 90%; height: 30px; float: right;" [(ngModel)]="nameRepository" [ngModelOptions]="{standalone: true}" class="form-control" id="nameRepository"placeholder="Naziv projekta" required>
+            </div>
+            <div class="left w-100" style=" margin-top: 30px;">
+                <label for="descriptionRepository" class="form-label left widget w-100">
+                    Description
+                    <span style="font-size: 12px; color: var(--fgColor-muted, var(--color-fg-muted, #848d97));">(optional)</span>
+                </label>
+            </div>
+            <div class="left w-100" >
+                <input type="text" style="height: 30px; float: right;" class="form-control w-100" [(ngModel)]="descriptionRepository" [ngModelOptions]="{standalone: true}" id="descriptionRepository" placeholder="Description" required>
+            </div>
+        </div>
+
+        <div class="mb-3 regija">
+            <div class="left w-100" style="margin-bottom: 5px;">
+                <input type="radio" id="opcija1" name="opcija" [(ngModel)]="typeRepository" [ngModelOptions]="{standalone: true}" style="width: 17px; height: 17px;" value="Public">
+                <i class="fa fa-unlock-alt" style="margin-left: 15px;font-size: 22px;" aria-hidden="true"></i><label for="opcija1" style="width: 10%; margin-left: 5px; font-size: 18px;" class="form-label widget">Public</label><br>
+                <span style="margin-left: 30px; font-size: 12px;">Anyone on the internet can see this repository. You choose who can commit.</span>
+            </div>
+            
+            <div class="left w-100">
+                <input type="radio" id="opcija2" name="opcija" style="width: 17px; height: 17px;" [(ngModel)]="typeRepository" [ngModelOptions]="{standalone: true}" value="Private">
+                <i class="fa fa-lock " style="margin-left: 15px; font-size: 22px;" aria-hidden="true"></i><label for="opcija2" style="width: 10%; margin-left: 5px; font-size: 18px;" class="form-label widget">Private</label><br>
+                <span style="margin-left: 30px; font-size: 12px;">You choose who can see and commit to this repository.</span>
+            </div>
+
+        </div>
+ 
+        <div class="mb-3 regija">
+            <label for="typeLanguageRepository" class="form-label left widget w-100">Choose a language</label>
+            <select class="form-select" name="typeLanguageRepository" id="typeLanguageRepository" [(ngModel)]="typeLanguageRepository" [ngModelOptions]="{standalone: true}" required >
+                <option *ngFor="let option of optionsLanguage" [value]="option">{{option}}</option> 
+            </select>
+        </div>
+
+        <div class="mb-3 regija">
+            <label for="typeLicenseRepository" class="form-label left widget w-100">Choose a license</label>
+            <select class="form-select" name="typeLicenseRepository" id="typeLicenseRepository" [(ngModel)]="typeLicenseRepository" [ngModelOptions]="{standalone: true}" required >
+                <option *ngFor="let option of licenseRepository" [value]="option">{{option}}</option>
+            </select>
+            <span style="font-size: 12px;"> A license tells others what they can and can't do with your code.</span>
+        </div>
+
+        <div class="mb-3 regija">
+            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i> <span style="font-size: 12px;"> You are creating a public repository in your personal account.</span>
+        </div>
+
+        <div class="mb-3">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" style="float: right;" (click)="createNewProject()">Create repository</button>
+        </div>
+    </form>
+</div>

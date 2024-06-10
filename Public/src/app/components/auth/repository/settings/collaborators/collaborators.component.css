@@ -1,0 +1,27 @@
+.input-with-icon {
+    position: relative;
+    display: inline-block;
+  }
+  .input-with-icon i {
+    position: absolute;
+    left: 5px; /* Podešavanje položaja ikone sa lijeve strane */
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .input-with-icon input[type="text"] {
+    padding-left: 25px; /* Dodavanje prostora s lijeve strane za ikonu */
+  }
+
+
+  .input-with-image {
+    position: relative;
+    display: inline-block;
+  }
+  .input-with-image img {
+    border-radius: 50%; /* Postavljanje border kruga */
+
+  }
+
+  h2 {
+    color: #04AA6D
+}

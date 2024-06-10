@@ -1,2 +1,30 @@
-<!-- <app-header [sharedData]="parentData" [currentTab]="currentTab"></app-header> -->
-<p>settings works!</p>
+<div style="float: left; width: 100%;">
+    <div style="float: left; width: 325px; min-height: 740px; margin-right: 5px; padding: 5px;">
+        <div class="test">
+            <div style="margin-bottom: 1px;">
+                <button class="btn btn-light" style="width: 100%; height: 100%;" [ngClass]="{'open-btn': openTub === 'general'}" (click)="openTab('general')">General</button>
+            </div>
+            <hr>
+            <div style="margin-bottom: 1px;">
+                <button class="btn btn-light" style="width: 100%; height: 100%;" [ngClass]="{'open-btn': openTub === 'collaborators'}" (click)="openTab('collaborators')">Collaborators</button>
+            </div>
+            <hr>
+            <!-- <div style="margin-bottom: 1px;">
+                <button class="btn btn-light" style="width: 100%; height: 100%;" [ngClass]="{'open-btn': openTub === 'branches'}" (click)="openTab('branches')">Branches</button>
+            </div>
+            <div style="margin-bottom: 1px;">
+                <button class="btn btn-light" style="width: 100%; height: 100%;" [ngClass]="{'open-btn': openTub === 'tags'}" (click)="openTab('tags')">Tags</button>
+            </div> -->
+        </div>
+    </div>
+    <div style="float: left; width: calc(100% - 330px); min-height: 740px; padding: 5px;">
+        <app-branches *ngIf="openTub === 'branches'" ></app-branches>
+
+        <app-collaborators [repositoryData]="repositoryData" *ngIf="openTub === 'collaborators'"></app-collaborators>
+
+        <app-general [repositoryData]="repositoryData" *ngIf="openTub === 'general'" ></app-general>
+        
+
+        <app-tags *ngIf="openTub === 'tags'"></app-tags>
+    </div>
+</div>

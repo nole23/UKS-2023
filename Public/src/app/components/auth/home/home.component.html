@@ -5,7 +5,7 @@
         <!-- Right side with user information -->
         <div class="col-md-4">
             <div class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/6009/6009939.png" class="card-img-top" alt="User Image">
+                <img src="../../../../assets/avatars/1.png" style="border-radius: 50%;" class="card-img-top" alt="User Image">
                 <div class="card-body">
                     <h5 class="card-title">{{userData.firstName}} {{userData.lastName}}</h5>
                     <p class="card-text">{{userData.username}}</p>
@@ -20,12 +20,36 @@
         <div class="col-md-8">
             <!-- Your charts go here -->
             <div class="info-container">
-                <div class="button-container" style="float: left; width: 100%; border-bottom: 1px solid #ddd;">
-                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="float: right; margin-bottom: 5px;">Novi projekat</button>
+                <div class="button-container" style="border-bottom: 1px solid #ddd;width: 100%;display: flex;justify-content: flex-end; padding-bottom: 10px;">
+                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: calc(100% - 285px);">
+                        <input type="text" style="margin: 0; height: 100%; width: 100%; border-radius: 5px;" [(ngModel)]="searchText" placeholder="Finde a repository..." (input)="filterItems()">
+                    </div>
+                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
+                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown2()">Type <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen2 }">
+                          <a style="cursor: pointer;" *ngFor="let i of optionsType" [ngClass]="{'selectOptions': selectType === i}" (click)="selectType1(i)">{{i}}</a>
+                        </div>
+                    </div>
+                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 115px;">
+                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown1()">Language <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen1 }">
+                          <a style="cursor: pointer;" *ngFor="let i of optionsLanguage" [ngClass]="{'selectOptions': selectLangage === i}" (click)="selectLanguage(i)">{{i}}</a>
+                        </div>
+                    </div>
+                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
+                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown()">Sort <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen }">
+                          <a style="cursor: pointer;" *ngFor="let i of optionsSort" [ngClass]="{'selectOptions': i === selectSort}" (click)="selectOption(i)">{{i}}</a>
+                        </div>
+                    </div>
+                    <div style="height: 35px; width: 85px">
+                        <a href="/new" class="new-btn" style="width: 100%; height: 100%;"><i class="fa fa-tachometer" style="margin-right: 5px; font-size: 14px;" aria-hidden="true"></i> New</a>
+                    </div>
+                    
                 </div>
                 <div style="float: left; width: 100%; margin-top: 5px;">
                     <ul>
-                        <app-table class="list-group list-group-flush" *ngFor="let repository of allRepository" [repository]="repository"></app-table>
+                        <app-table class="list-group list-group-flush" *ngFor="let repository of filterRepositories" [repository]="repository"></app-table>
                     </ul>
                 </div>
               </div>
@@ -37,52 +61,6 @@
     </div>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Dodajte novi projekat</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="mb-3">
-                    <label for="nameRepository" class="form-label">Naziv projekta</label>
-                    <input type="text" class="form-control" id="nameRepository" [(ngModel)]="nameRepository" [ngModelOptions]="{standalone: true}" placeholder="Naziv projekta" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descriptionRepository" class="form-label">Opis projekta</label>
-                    <input type="text" class="form-control" id="descriptionRepository" [(ngModel)]="descriptionRepository" [ngModelOptions]="{standalone: true}"  placeholder="Opis projekta" required>
-                </div>
-                <div class="mb-3">
-                    <label for="typeRepository" class="form-label">Izaberite tip projekta:</label>
-                    <select class="form-select" name="typeRepository" id="typeRepository" [(ngModel)]="typeRepository" [ngModelOptions]="{standalone: true}" required>
-                        <option *ngFor="let option of options" [value]="option">{{option}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="typeLanguageRepository" class="form-label">Izaberite jezik projekta:</label>
-                    <select class="form-select" name="typeLanguageRepository" id="typeLanguageRepository" [(ngModel)]="typeLanguageRepository" [ngModelOptions]="{standalone: true}" required >
-                        <option *ngFor="let option of optionsLanguage" [value]="option">{{option}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="typeLicenseRepository" class="form-label">Izaberite licencu projekta:</label>
-                    <select class="form-select" name="typeLicenseRepository" id="typeLicenseRepository" [(ngModel)]="typeLicenseRepository" [ngModelOptions]="{standalone: true}" required >
-                        <option *ngFor="let option of licenseRepository" [value]="option">{{option}}</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Odustati</button>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="createNewProject()">Kreirajte projekat</button>
-        </div>
-      </div>
-    </div>
-  </div>
   
 <!-- Modal1 -->
 <div class="modal fade" id="myModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
