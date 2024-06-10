@@ -109,13 +109,41 @@ export class OpenIssuesComponent {
       .subscribe((res: any) => {
         if (res.status) {
           this.issue.assigned.push(this.user)
-          console.log(this.issue.assigned)
           this.issue.comments.push(res.data);
           this.isAssigned1()
         } else {
           console.log('server ne radi')
         }
       })
+  }
+
+  usAssignedUser() {
+    const assignedIssue = {
+      data: {
+        id: this.issue.id
+      },
+      user: this.user
+    }
+    this.repository.unAssignedIssue(assignedIssue)
+      .subscribe((res: any) => {
+        if (res.status) {
+          let index = this.issue.assigned.findIndex((user: any) => user.id === this.user.id);
+
+          if (index !== -1) {
+            this.issue.assigned.splice(index, 1);
+          }
+          this.issue.comments.push(res.data);
+          this.isUnAssigned()
+        } else {
+          console.log('server ne radi')
+        }
+      })
+  }
+
+  isUnAssigned() {
+    if (this.issue.assigned.length > 0) {
+      this.isAssigned = false;
+    }
   }
 
   isAssigned1() {
@@ -126,6 +154,11 @@ export class OpenIssuesComponent {
 
   setLabels(item: any) {
     this.addLabels = item;
+    this.issue.labels = item.name;
+    this.repository.setLabel(this.issue, this.user.id).subscribe((res: any) => {
+      console.log(res)
+      this.issue.comments.push(res.data);
+    })
   }
 
   timeAgo(createdDate: any) {

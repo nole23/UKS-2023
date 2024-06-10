@@ -130,8 +130,30 @@ export class RepositoriesService {
       }))
   }
 
+  unAssignedIssue(item: any) {
+    return this.http.put(this.API_URL + 'unassigne-issue', item)
+    .pipe(map((res: any) => {
+      if (!this._checkResponse(res)) {
+        return {status: false}
+      }
+
+      return {status: true, data: res.data}
+    }))
+  }
+
   updateIssue(item: any) {
     return this.http.put(this.API_URL + 'update-issue', item)
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+
+        return {status: true, data: res.data}
+      }))
+  }
+
+  setLabel(item: any, idUser: any) {
+    return this.http.put(this.API_URL + 'update-issue-labels', {issueId: item.id, label: item.labels, userId: idUser})
       .pipe(map((res: any) => {
         if (!this._checkResponse(res)) {
           return {status: false}

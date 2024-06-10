@@ -88,8 +88,22 @@ class IssueService():
         issue.status = False
         issue.save()
 
-        comment = user1.firstName + ' ' + user1.lastName + \
+        comment = user1.username + \
             ' has closed issue #' + str(idIssue) + '.'
+
+        issueComment = self.issueComment.create(
+            comment, issue, user1, "AUTOGENERATE")
+
+        return {"message": "SUCCESS", "data": self.response.issueCommentSerialize(issueComment)}
+    
+    def updateLabels(self, issueId, label, user):
+        issue = self.issue.get_by_id(issueId)
+        user1 = self.userService.getUserById(int(user))
+        issue.labels = label
+        issue.save()
+
+        comment = '<span style="color: green">' + user1.username + '</span>' \
+            ' set labels to issue #' + str(issue.id) + '.'
 
         issueComment = self.issueComment.create(
             comment, issue, user1, "AUTOGENERATE")

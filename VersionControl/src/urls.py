@@ -47,6 +47,7 @@ urlpatterns = [
 
     path('issue/<int:id>', issues.IssuesGet.as_view()),
     path('assigne-issue', issues.IssuesGet.as_view()),
+    path('update-issue-labels', issues.IssuesLanles.as_view()),
 
     # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),

@@ -17,6 +17,25 @@ export class IssuesComponent {
   isInfoIssue: boolean = false;
   isTypeIssue: boolean = true;
   oneIssue: any = null;
+  originalIssue: any = [];
+  labels: any = [
+    {
+      name: 'Bug',
+      color: 'red-class'
+    },
+    {
+      name: 'US',
+      color: 'green-class'
+    },
+    {
+      name: 'Documentation',
+      color: 'blue-class'
+    },
+    {
+      name: 'Invalid',
+      color: 'test-class'
+    }
+  ];
 
   constructor(private repository: RepositoriesService) {}
 
@@ -28,6 +47,7 @@ export class IssuesComponent {
     }
 
     this.allIssue = this.project.issue.length;
+    this.originalIssue = this.project.issue;
 
     this.project.issue.forEach((element: any) => {
       if (element.status) {
@@ -45,13 +65,33 @@ export class IssuesComponent {
       let status = this.form.nativeElement.children['select'].children['value'].value;
       let nameUser = this.form.nativeElement.children['author'].children['value'].value;
 
-      this.repository.filter(status, nameUser, this.project.id, 'status')
-        .subscribe((res: any) => {
-          if (res.status) {
-            console.log(res.data)
-          }
-        })
+      
+
+      if (status === 'null' && nameUser === 'null') {
+        if (this.originalIssue.length > 0) {
+          this.project.issue = this.originalIssue;
+        }
+      } else {
+        let statusS = status !== 'null' ? status : null;
+        let userN = nameUser !== 'null' ? nameUser : null;
+        
+        this.project.issue = this._filterList(JSON.parse(statusS), userN);
+      }
     }
+  }
+
+  _filterList(status: boolean | null, author: any | null) {
+    return this.originalIssue.filter((item: any) => {
+      // Provera statusa ako je zadat
+      if (status !== null && item.status !== status) {
+        return false;
+      }
+      // Provera autora ako je zadat
+      if (author !== null && item.user.id !== author) {
+        return false;
+      }
+      return true; // Ako element zadovoljava sve uslove, vraća se u rezultat
+    });
   }
 
   openIssue(statusIssue: any) {
@@ -72,5 +112,13 @@ export class IssuesComponent {
     this.isAddIssue = true;
     this.isInfoIssue = true;
     this.oneIssue = item;
+  }
+
+  setColor(color: any) {
+    if (color !== null) {
+      let color1 = this.labels.find((x: any) => x.name === color);
+      return color1.color
+    }
+    return null;
   }
 }

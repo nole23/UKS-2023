@@ -16,8 +16,8 @@ class Index(APIView):
     def get(self, request):
 
         # defaultni userk kog kreiramo
-        user = User(firstName="test", lastName="test", email="test@gmail.com", username="test", folderName="test", password="test")
-        user.save()
+        # user = User.objects.create(firstName="test", lastName="test", email="test@gmail.com", username="test", folderName="test", password="test")
+        # user.save()
 
         role1 = Role(role_name="O")
         role2 = Role(role_name="C")
