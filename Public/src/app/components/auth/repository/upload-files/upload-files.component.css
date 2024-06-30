@@ -1,0 +1,39 @@
+a {
+    color: inherit; /* Postavlja boju teksta linka da nasleđuje boju teksta roditeljskog elementa */
+    text-decoration: none; /* Uklanja podvlačenje */
+}
+
+a:hover {
+    color: #04AA6D; /* Boja teksta prilikom hover-a */
+    text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
+
+.cursro-pointer {
+    cursor: pointer;
+}
+
+.cursor:hover {
+    color: #04AA6D; /* Boja teksta prilikom hover-a */
+    text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
+
+.a-link {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.delete-hover {
+    color: #333;
+}
+
+.delete-hover:hover {
+    color: red;
+}

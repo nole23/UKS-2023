@@ -36,6 +36,7 @@ import { GeneralComponent } from './components/auth/repository/settings/general/
 import { CollaboratorsComponent } from './components/auth/repository/settings/collaborators/collaborators.component';
 import { BranchesComponent } from './components/auth/repository/settings/branches/branches.component';
 import { TagsComponent } from './components/auth/repository/settings/tags/tags.component';
+import { UploadFilesComponent } from './components/auth/repository/upload-files/upload-files.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -66,7 +67,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     GeneralComponent,
     CollaboratorsComponent,
     BranchesComponent,
-    TagsComponent
+    TagsComponent,
+    UploadFilesComponent
   ],
   imports: [
     BrowserModule,

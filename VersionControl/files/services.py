@@ -6,6 +6,7 @@ from repository.models import Project, ChildrenTree
 from files.models import Files
 from statistic.models import Statistic
 from users.models import User
+from common.webCommon import decode_post
 
 class FileService():
     project = Project()
@@ -14,7 +15,9 @@ class FileService():
     responsObject = ResponsObject()
     user = User()
 
-    def addNewFile(self, user, data):
+    def addNewFile(self, repositoryData):
+        data = decode_post(repositoryData['data'][0])
+        user = decode_post(repositoryData['user'][0])
         tree = data['tree']
         folder = data['folder']
         types = data['type']

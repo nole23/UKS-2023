@@ -1,0 +1,54 @@
+<div style="float: left; width: 100%; margin-bottom: 10px;">
+    <div class="form-group" style="float: left; width: 100%;">
+        <span style="float: left; height:30px; width: fit-content; margin-left: 5px;">
+            <span *ngFor="let item of treeName; let i = index">
+                <span *ngIf="item !== 'master'"> / <a class="cursro-pointer" (click)="link(item)">{{item}}</a></span>
+            </span>
+            <span > / </span>
+        </span>
+
+        <span class="float-left cursor" style="float: left; cursor: pointer; margin-left: 5px; height:30px; width: fit-content;" *ngIf="isNewFolder" (click)="addNewFolder()">
+            <i class="fa fa-plus" aria-hidden="true"></i> New Folder
+        </span>
+        
+        <input class="form-control" style="float: left; margin-left: 5px; height:30px; width: fit-content;" type="text" *ngIf="!isNewFolder" [(ngModel)]="nameFolder" placeholder="Name your folder...">
+        <span class="float-left" style="float: left; margin-left: 5px; height:30px; width: fit-content;"> / </span>
+        <!-- <input class="form-control" style="float: left; margin-left: 5px; height:30px; width: fit-content;" type="text" [(ngModel)]="name" placeholder="Name your file..."> -->
+        <span class="float-left " style="float: left; margin-left: 5px; height:30px; width: fit-content;" *ngIf="!isUpdateName" (click)="updateName()"> {{nameFile}}</span>
+        <input class="form-control" style="float: left; margin-left: 5px; height:30px; width: fit-content;" type="text" *ngIf="isUpdateName" [(ngModel)]="nameFile">
+
+        <button class="btn btn-light" style="float: right; " (click)="cancel()">Cancel changes</button>
+    </div>
+</div>
+
+
+<div style="clear:both; width: 100%; float: left; height: auto;" class="border" *ngIf="nameFile === ''">
+    <div class="float-left w-100 h-40p color-background1">
+        <div class="float-left w-100 form-control mb-3" style="height: 40vh; position: relative;">
+            <input hidden type="file" id="files" #uploader (change)="uploadFile($event)" multiple>
+            <i class="fa fa-file-o fa-2x centered" style="top: 30%; transform: scale(1,1.1);" aria-hidden="true"></i>
+            <a class="a-link font-20 cursor centered" style="cursor: pointer;" (click)="uploader.click()">Choose your files to add them to your
+                repository</a>
+        </div>
+    </div>
+</div>
+
+<div class="w-100 h-40p font-17 float-left border" style="float: left;" *ngFor="let f of fileNames; let i = index" >
+    <div class="float-left w-50 pl-3 pt-1 pr-1 pb-1" style="float: left;">
+        <span><i class="fa fa-file-o mr-3" aria-hidden="true"></i>{{nameFile}}</span>
+    </div>
+    <div class="float-right w-30" style="float: right;"><button class="btn float-right delete-hover" (click)="delete(i)"><i
+                class="fa fa-times" aria-hidden="true"></i></button></div>
+</div>
+
+<div style="clear: both; width: 100%; margin-top: 10px; margin-bottom: 10px; float: left;">
+    <div style="float: left; width: 70%;"></div>
+    <div style="float: right; width: 30%;">
+        <button (click)="upload()" [disabled]="ngIsNull()" style="width: 70%; margin-right: 3%;" class="btn btn-success border-radius-10">
+            Commit new file
+        </button>
+        <button class="btn btn-danger border-radius-10" (click)="cancel()">
+            Cancel
+        </button>
+    </div>
+</div>
