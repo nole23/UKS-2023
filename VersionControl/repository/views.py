@@ -19,13 +19,15 @@ class Repository(APIView):
         return self.res.createResponse(status=200)
     
     def post(self, request):
+        print("1")
         repositoryData = decode_body(request.body)
+        print("1")
         userData = repositoryData['user']
-        
+        print("1")
         returnData = self.repositoryService.createRepository(repositoryData, userData)
-
+        print("1")
         self.res.addItem(returnData['project'])
-
+        print("1")
         return self.res.createResponse(status=200)
     
     def put(self, request):

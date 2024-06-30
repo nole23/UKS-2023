@@ -1,1 +1,12 @@
-<p>statistic works!</p>
+<div class="w-100 pb-2 pl-1 pr-1">
+    <div class="float-left w-70">
+
+        <div class="content w-100 color-text" *ngIf="graph !== null">
+            <div class="chart-wrapper">
+                <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+                <plotly-plot [data]="graph1.data" [layout]="graph1.layout"></plotly-plot>
+            </div>
+        </div>
+
+    </div>
+</div>

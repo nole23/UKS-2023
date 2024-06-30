@@ -185,6 +185,16 @@ export class RepositoriesService {
       }))
   }
 
+  getStatistic(id: any) {
+    return this.http.get(this.API_URL + 'statistic/' + id )
+      .pipe(map((res: any) => {
+        if (!this._checkResponse(res)) {
+          return {status: false}
+        }
+        return {status: true, data: res}
+      }))
+  }
+
   _checkResponse(res: any) {
     if (res.message === undefined) return true;
     

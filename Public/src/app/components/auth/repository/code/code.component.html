@@ -109,5 +109,8 @@
 
 <div *ngIf="type === 'add'">
     <app-add-files [treeName]="treeName" (notifyParent)="onEmit($event)"></app-add-files>
-    <!-- <app-add-files [list_project]="list_project" [tree]="tree" [branch]="branch" (emit)="onEmitClose($event)"> -->
+</div>
+
+<div *ngIf="type === 'upload'">
+    <app-upload-files [treeName]="treeName" [repositoryData]="repositoryData" (notifyParent)="onEmit($event)"></app-upload-files>
 </div>

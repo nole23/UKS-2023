@@ -21,6 +21,7 @@ from users import views as users
 from repository import views as repository
 from files import views as files
 from issues import views as issues
+from statistic import views as statistic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +49,9 @@ urlpatterns = [
     path('issue/<int:id>', issues.IssuesGet.as_view()),
     path('assigne-issue', issues.IssuesGet.as_view()),
     path('update-issue-labels', issues.IssuesLanles.as_view()),
+
+    path('statistic/<int:id>', statistic.Statistic.as_view()),
+
 
     # region Templateview
     path('', TemplateView.as_view(template_name="ang_index.html"), name='home'),

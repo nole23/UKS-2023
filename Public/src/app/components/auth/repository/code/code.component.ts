@@ -155,9 +155,13 @@ export class CodeComponent {
       }
 
       let test = this.getData(responseData.data, responseData.link);
-      this.childrenFolder.files = test.files;
-      
-      
+      if (responseData.newFolder !== null) {
+        let newFolder = test.childrenFolder.find((x: any) => x.nameNode === responseData.newFolder);
+        this.childrenFolder.childrenFolder.push(newFolder);
+      } else {
+        this.childrenFolder.files = test.files;
+      }
+           
       this.type = null;
     } else if (responseData.type === 'navigation') {
       this.openMasterFolder(responseData.link)
@@ -168,8 +172,8 @@ export class CodeComponent {
   }
 
   getData(data: any, link: any) {
-    if (data.rootTree === link) {
-      return data.rootTree.files;
+    if (data.rootTree.nameBranch === link) {
+      return data.rootTree;
     } else {
       return this.getDataHelper(data.rootTree.childrenFolder, link);
     }
