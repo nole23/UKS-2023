@@ -233,6 +233,11 @@ class ResponsObject():
             return str('null')
         return file_data
     
+    def userInformation(self, data):
+        return {
+            'image': data.imageLink
+        }
+    
 # endregion
     
 class AuthSerialize():

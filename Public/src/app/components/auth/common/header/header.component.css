@@ -1,7 +1,17 @@
 .navbar-nav .dropdown-menu {
     position: absolute!important;
     background: #212529;
+    
 }
+
+.navbar-brand.text {
+    display: flex;
+    align-items: center;
+    min-width: 3ch;
+    color: inherit;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+} 
 
 .dropdown-item {
     color: #fff
@@ -34,4 +44,8 @@ a {
 a:hover {
     color: #04AA6D; /* Boja teksta prilikom hover-a */
     text-decoration: underline; /* Dodaje podvlačenje prilikom hover-a */
+}
+
+.header-dark {
+    background: #010409;
 }

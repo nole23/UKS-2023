@@ -13,6 +13,14 @@
 
 .card {
   border: none;
+  background: transparent!important;
+}
+
+.card-text {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
 }
 
 .text-center {
@@ -88,73 +96,4 @@ span.psw {
   }
 }
 
-.new-btn {
-  display: block;
-  text-align: center !important;
-  background-color: #238636;
-  color: #fff;
-  position: relative;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  white-space: nowrap;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid;
-  border-radius: 6px;
-  appearance: none;
-  display: flex;
-  justify-content: center; /* Horizontalno centriranje */
-  align-items: center; /* Vertikalno centriranje */
-  text-decoration: none; /* Ukloni podvlačenje od hiperveze */
-  width: 100%; /* Da bi tekst bio centriran u celom elementu */
-  height: 100%; /* Da bi tekst bio centriran u celom elementu */
-}
 
-.new-btn:hover {
-  background-color: #6aa84f;;
-}
-
-/* Stilovi za dugme */
-.dropbtn {
-  background-color: #238636;
-  color: white;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Stilovi za padajući meni */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 1;
-  top: 35px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-.show {
-  display: block;
-}
-
-.selectOptions {
-  background-color: #ddd;
-}

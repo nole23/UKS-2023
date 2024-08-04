@@ -56,3 +56,53 @@ p {
 .test-class {
     color: black;
 }
+
+.btn-custom {
+    color: #c9d1d9!important;
+    background-color: #21262d!important;
+    border-color: #30363d!important;
+    box-shadow: 0px 0px 0px 0px #000000!important;
+    transition: 80ms cubic-bezier(0.33, 1, 0.68, 1)!important;
+    transition-property: color, background-color, box-shadow, border-color!important;
+    display: block!important;
+    width: 100%!important;
+    text-align: center!important;
+}
+
+.btn-custom:hover {
+    background-color: #292e36!important;
+    border-color: #30363d!important;
+    transition-duration: .1s!important;
+}
+
+.form-control {
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #e6edf3;
+    vertical-align: middle;
+    background-color: #0d1117;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    box-shadow: inset 0px 1px 0px 0px #0104093d;
+    transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+    transition-property: color, background-color, box-shadow, border-color;
+}
+
+.form-control:focus {
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #e6edf3;
+    vertical-align: middle;
+    background-color: #0d1117;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #1f6feb;
+    border-radius: 6px;
+    box-shadow: inset 0px 1px 0px 0px #0104093d;
+    transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+    transition-property: color, background-color, box-shadow, border-color;
+}

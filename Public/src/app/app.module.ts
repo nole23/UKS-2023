@@ -37,6 +37,10 @@ import { CollaboratorsComponent } from './components/auth/repository/settings/co
 import { BranchesComponent } from './components/auth/repository/settings/branches/branches.component';
 import { TagsComponent } from './components/auth/repository/settings/tags/tags.component';
 import { UploadFilesComponent } from './components/auth/repository/upload-files/upload-files.component';
+import { AllRepoComponent } from './components/auth/home/all-repo/all-repo.component';
+import { AllProjectsComponent } from './components/auth/home/all-projects/all-projects.component';
+import { OverviewComponent } from './components/auth/home/overview/overview.component';
+import { EditProfileComponent } from './components/auth/home/edit-profile/edit-profile.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -68,7 +72,11 @@ PlotlyModule.plotlyjs = PlotlyJS;
     CollaboratorsComponent,
     BranchesComponent,
     TagsComponent,
-    UploadFilesComponent
+    UploadFilesComponent,
+    AllRepoComponent,
+    AllProjectsComponent,
+    OverviewComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 .new-repository {
     width: 782px;
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -10,7 +10,7 @@
     padding-bottom: 8px;
     margin-bottom: 8px;
     border-bottom-style: solid;
-    border-bottom-color: #ddd;
+    border-bottom-color: #30363db3;
     border-bottom-width: 1px;
 }
 
@@ -18,10 +18,15 @@
     font-weight: 600;
     margin: 0px;
     font-size: 24px;
+    color: #e6edf3;
+}
+
+.new-repository-header span {
+    font-size: 0.875rem;
 }
 
 .regija {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #30363db3;
     min-height: 65px;
     float: left;
     padding-bottom: 15px;
@@ -39,4 +44,14 @@
 
 .w-100 {
     width: 100%;
+}
+
+.form-select {
+    height: 28px;
+    gap: 4px;
+    font-size: 12px;
+    min-width: 50px;
+    background-color: #30363db3;
+    color: #e6edf3;
+    border: 1px solid #30363d;
 }

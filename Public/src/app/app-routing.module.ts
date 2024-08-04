@@ -18,6 +18,8 @@ import { AddNewRepositoryComponent } from './components/auth/home/add-new-reposi
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'all-repo', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'all-project', component: HomeComponent, canActivate: [authGuard] },
   { path: 'new', component: AddNewRepositoryComponent },
   { path: 'login', component: LoginComponent, canActivateChild: [authGuardChild] },
   { path: 'restart-password', component: PasswordRestartComponent, canActivateChild: [authGuardChild] },

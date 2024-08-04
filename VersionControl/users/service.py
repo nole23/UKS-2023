@@ -43,3 +43,17 @@ class UserService(AuthSerialize):
 
         self.userModel.create_new_user(data)
         return {"message": "SUCCESS", "data": None}
+    
+    def update(self, data):
+        user = self.userModel.get_by_id(data['id'])
+        user.firstName = data['firstName']
+        user.lastName = data['lastName']
+        user.username = data['username']
+        user.save()
+        return {"message": "SUCCESS", "data": data}
+    
+    def getAllInformation(self, id):
+        user = self.userModel.get_by_id(id)
+        print(self.responseObject.userInformation(user.userInformation))
+
+        return {"message": "SUCCESS", "data": {"followers": 0, "following": 0, "userInformation": self.responseObject.userInformation(user.userInformation)}}

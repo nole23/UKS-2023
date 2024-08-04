@@ -1,95 +1,39 @@
-<!-- <app-header [sharedData]="parentData"></app-header> -->
 <div class="container mt-4">
     <div class="row">
 
         <!-- Right side with user information -->
-        <div class="col-md-4">
+        <div class="col-md-3" >
             <div class="card">
-                <img src="../../../../assets/avatars/1.png" style="border-radius: 50%;" class="card-img-top" alt="User Image">
-                <div class="card-body">
-                    <h5 class="card-title">{{userData.firstName}} {{userData.lastName}}</h5>
+                <img src="../../../../assets/avatars/{{userInformation.image}}" style="border-radius: 50%;" class="card-img-top" alt="User Image">
+                <div class="card-body" *ngIf="!isEdit">
                     <p class="card-text">{{userData.username}}</p>
                     <!-- Add more user information here -->
-                    <a href="#" class="btn btn-success" style="width: 100%" data-bs-toggle="modal" data-bs-target="#myModal1">Edit Profile</a>
+                    <a class="btn btn-success btn-custom" style="width: 100%; cursor: pointer;" (click)="isEdit = !isEdit">Edit Profile</a>
                     <span class="thin-line"></span>
-                    <p class="card-text">Repozitorijuma: {{allRepository.length}}</p>
+                    <div style="margin-top: 15px; height: 30px; float: left; width: 100%;">
+                        <span style="height: 100%; width: 47.5%; float: left; text-align: right;">{{otherInformation.followers}} followers</span>
+                        <span style="height: 100%; width: 5%; float: left; text-align: center;">-</span>
+                        <span style="height: 100%; width: 47.5%; float: left;">{{otherInformation.following}} following</span>
+                    </div>
+                </div>
+                <div *ngIf="isEdit" style="margin-top: 15px;">
+                    <app-edit-profile
+                        [userData]="userData"
+                        [isEdit]="isEdit"
+                        (notifyParent)="isEditClick($event)">
+                    </app-edit-profile>
                 </div>
             </div>
         </div>
+
         <!-- Left side with charts -->
-        <div class="col-md-8">
-            <!-- Your charts go here -->
-            <div class="info-container">
-                <div class="button-container" style="border-bottom: 1px solid #ddd;width: 100%;display: flex;justify-content: flex-end; padding-bottom: 10px;">
-                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: calc(100% - 285px);">
-                        <input type="text" style="margin: 0; height: 100%; width: 100%; border-radius: 5px;" [(ngModel)]="searchText" placeholder="Finde a repository..." (input)="filterItems()">
-                    </div>
-                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
-                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown2()">Type <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
-                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen2 }">
-                          <a style="cursor: pointer;" *ngFor="let i of optionsType" [ngClass]="{'selectOptions': selectType === i}" (click)="selectType1(i)">{{i}}</a>
-                        </div>
-                    </div>
-                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 115px;">
-                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown1()">Language <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
-                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen1 }">
-                          <a style="cursor: pointer;" *ngFor="let i of optionsLanguage" [ngClass]="{'selectOptions': selectLangage === i}" (click)="selectLanguage(i)">{{i}}</a>
-                        </div>
-                    </div>
-                    <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
-                        <button class="dropbtn new-btn" style="margin: 0; width: 100%; height: 100%; background-color: grey; color: #fff" (click)="toggleDropdown()">Sort <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
-                        <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen }">
-                          <a style="cursor: pointer;" *ngFor="let i of optionsSort" [ngClass]="{'selectOptions': i === selectSort}" (click)="selectOption(i)">{{i}}</a>
-                        </div>
-                    </div>
-                    <div style="height: 35px; width: 85px">
-                        <a href="/new" class="new-btn" style="width: 100%; height: 100%;"><i class="fa fa-tachometer" style="margin-right: 5px; font-size: 14px;" aria-hidden="true"></i> New</a>
-                    </div>
-                    
-                </div>
-                <div style="float: left; width: 100%; margin-top: 5px;">
-                    <ul>
-                        <app-table class="list-group list-group-flush" *ngFor="let repository of filterRepositories" [repository]="repository"></app-table>
-                    </ul>
-                </div>
-              </div>
-            
-            <!-- Add your chart components or content here -->
+        <div class="col-md-9">
+            <app-overview *ngIf="currentHeaderTab === 'overview'" [allRepositories]="allRepositories"></app-overview>
+
+            <app-all-repo *ngIf="currentHeaderTab === 'all-repo'"></app-all-repo>
+
+            <app-all-projects *ngIf="currentHeaderTab === 'all-project'"></app-all-projects>
         </div>
-
-
+        
     </div>
 </div>
-
-  
-<!-- Modal1 -->
-<div class="modal fade" id="myModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Azurirajte profil</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="mb-3">
-                    <label for="firstName" class="form-label">Ime</label>
-                    <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" placeholder="Azurirajte ime" required>
-                </div>
-                <div class="mb-3">
-                    <label for="lastName" class="form-label">Prezime</label>
-                    <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}"  placeholder="Azurirajte prezime" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Sifra</label>
-                    <input type="text" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  placeholder="Kreirajte novu sifru" required>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Odustati</button>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateUserProfile()">Azurirajte profil</button>
-        </div>
-      </div>
-    </div>
-  </div>

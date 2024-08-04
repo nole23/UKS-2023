@@ -9,7 +9,7 @@
 a {
     text-decoration: none;
     font-size: 1.25rem;
-    color: #38761d
+    color: #4493f8
 }
 
 a:hover {
@@ -18,13 +18,14 @@ a:hover {
 
 .custom-margin {
     font-size: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid #8d96a0;
     border-radius: 2em;
     display: inline-block;
     font-weight: 500;
     line-height: 18px;
     padding: 0 7px;
     white-space: nowrap;
+    color: #8d96a0;
 }
 
 .description-margin {
@@ -34,5 +35,6 @@ a:hover {
 }
 
 p {
-    font-size: 14px
+    font-size: 14px;
+    color: #8d96a0
 }

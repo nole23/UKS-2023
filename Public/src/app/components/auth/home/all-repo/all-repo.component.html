@@ -1,0 +1,35 @@
+<!-- Your charts go here -->
+<div class="info-container">
+    <div class="button-container" style="border-bottom: 1px solid #30363d;width: 100%;display: flex;justify-content: flex-end; padding-bottom: 10px;">
+        <div class="dropdown" style="margin-right: 10px; height: 35px; width: calc(100% - 285px);">
+            <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Finde a repository..." (input)="filterItems()">
+        </div>
+        <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
+            <button class="dropbtn new-btn btn-custom" (click)="toggleDropdown2()">Type <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+            <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen2 }">
+                <a style="cursor: pointer;" *ngFor="let i of optionsType" [ngClass]="{'selectOptions': selectType === i}" (click)="selectType1(i)">{{i}}</a>
+            </div>
+        </div>
+        <div class="dropdown" style="margin-right: 10px; height: 35px; width: 115px;">
+            <button class="dropbtn new-btn btn-custom" (click)="toggleDropdown1()">Language <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+            <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen1 }">
+                <a style="cursor: pointer;" *ngFor="let i of optionsLanguage" [ngClass]="{'selectOptions': selectLangage === i}" (click)="selectLanguage(i)">{{i}}</a>
+            </div>
+        </div>
+        <div class="dropdown" style="margin-right: 10px; height: 35px; width: 85px;">
+            <button class="dropbtn new-btn btn-custom" (click)="toggleDropdown()">Sort <i class="fa fa-chevron-down"  style="margin-left: 5px; font-size: 14px;" aria-hidden="true"></i></button>
+            <div class="dropdown-content" [ngClass]="{ 'show': dropdownOpen }">
+                <a style="cursor: pointer;" *ngFor="let i of optionsSort" [ngClass]="{'selectOptions': i === selectSort}" (click)="selectOption(i)">{{i}}</a>
+            </div>
+        </div>
+        <div style="height: 35px; width: 85px">
+            <a href="/new" class="new-btn"><i class="fa fa-tachometer" style="margin-right: 5px; font-size: 14px;" aria-hidden="true"></i> New</a>
+        </div>
+        
+    </div>
+    <div style="float: left; width: 100%; margin-top: 5px;">
+        <ul style="padding-left: 0;">
+            <app-table class="list-group list-group-flush" *ngFor="let repository of allRepositories" [repository]="repository"></app-table>
+        </ul>
+    </div>
+</div>

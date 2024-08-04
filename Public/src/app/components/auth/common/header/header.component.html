@@ -1,9 +1,15 @@
-<header class="bg-dark text-white">
+<header class="text-white header-dark">
     <div class="" style=" margin: 0 20px 0 20px;">
 
       <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/">
-          <span><i class="fa fa-bars" aria-hidden="true"></i> GitHub</span>
+          <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+        </a>
+        <a class="navbar-brand" href="/">
+          <span><img src="../../../../../assets/github_1.png" alt="" width="30" height="30" style="border-radius: 50%;"></span>
+        </a>
+        <a class="navbar-brand text" href="/">
+          <span>test</span>
         </a>
         <div *ngIf="isReposiotiry()">
           <a href="/">{{ngOwn(project.listUser)}}</a>
@@ -28,6 +34,27 @@
               <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
             </ul>
           </div>
+        </div>
+      </nav>
+
+      <nav class="navbar navbar-expand-lg navbar-dark" style="width: 53%;" *ngIf="!isReposiotiry()">
+        <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%;">
+          <ul class="navbar-nav" style="width: 100%;">
+            <li class="nav-item" style="margin-right: 10px;" [ngClass]="{'active': currentHeaderTab === 'overview'}">
+              <a class="nav-link" href="/"> 
+                <span><i class="fa fa-columns" aria-hidden="true"></i> Overview</span>
+              </a>
+            </li>
+            <li class="nav-item" style="margin-right: 10px;" [ngClass]="{'active': currentHeaderTab === 'all-repo'}">
+              <a class="nav-link" href="/all-repo">
+                <span><i class="fa fa-archive" aria-hidden="true"></i> Repository</span></a>
+            </li>
+            <li class="nav-item" style="margin-right: 10px;" [ngClass]="{'active': currentHeaderTab === 'all-project'}">
+              <a class="nav-link" href="/all-project">
+                <span><i class="fa fa-th" aria-hidden="true"></i> Projects</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
 

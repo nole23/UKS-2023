@@ -1,0 +1,18 @@
+<div *ngIf="userData !== null">
+    <div>
+        <form>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="userData.firstName" [ngModelOptions]="{standalone: true}" placeholder="Update first name" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="userData.lastName" [ngModelOptions]="{standalone: true}"  placeholder="Update last name" required>
+            </div>
+        </form>
+    </div>
+    <div style="float: left; width: 100%;">
+        <a class="btn btn-success" style="width: 50%; float: left; cursor: pointer;" (click)="save()">Save</a>
+        <a class="btn btn-success btn-custom" style="width: 50%!important; float: right; cursor: pointer;" (click)="close()">Cancel</a>
+    </div>
+</div>

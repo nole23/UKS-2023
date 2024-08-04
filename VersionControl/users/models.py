@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 class Role(models.Model):
     ROLES = (
@@ -19,6 +20,10 @@ class Role(models.Model):
         except Role.DoesNotExist:
             return None
 
+class UserInformation(models.Model):
+    id = models.AutoField(primary_key=True)
+    imageLink = models.CharField(max_length=30)
+
 # Create your models here.
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -28,6 +33,7 @@ class User(models.Model):
     username = models.CharField(max_length=30)
     folderName = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
+    userInformation = models.ForeignKey(UserInformation, on_delete=models.CASCADE, null=True)
 
     def get_by_username(self, username):
         try:
@@ -45,6 +51,11 @@ class User(models.Model):
     def create_new_user(self, data):
         username = data['email'].split('@')
         username = username[0]
+        random_number = random.randint(1, 5)
+
+        ui = UserInformation.objects.create(
+            imageLink = random_number + ".png"
+        )
 
         User.objects.create(
             firstName=data['firstName'],
@@ -52,7 +63,8 @@ class User(models.Model):
             email=data['email'],
             username=username,
             folderName=username,
-            password=data['password']
+            password=data['password'],
+            userInformation=ui
         )
 
     def update(self, data):

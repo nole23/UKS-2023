@@ -31,7 +31,7 @@ export class RepositoriesService {
       }))
   }
 
-  getAllRepository(user: any): any {
+  getAllRepository(user: any, filter: string): any {
     return this.http.get(this.API_URL + 'all-repository/' + user.id)
       .pipe(map((res: any) => {
         if (!this._checkResponse(res)) {

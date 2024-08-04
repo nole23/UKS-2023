@@ -26,7 +26,7 @@ export class UsersService {
           return {status: false}
         }
 
-        return {status: true, data: res.data.userInformation}
+        return {status: true, data: res.data}
       }))
   }
 
@@ -34,13 +34,12 @@ export class UsersService {
     return this.http.put(this.API_URL + 'user-edit', user)
       .pipe(map((res: any) => {
         if (!this._checkResponse(res)) {
-          const user = res.data.user;
-          localStorage.removeItem('user');
-          localStorage.setItem('user', JSON.stringify(user));
           return {status: false}
         }
-
-        return {status: true}
+        const user = res.data;
+        localStorage.removeItem('user');
+        localStorage.setItem('user', JSON.stringify(user));
+        return {status: true, user: user}
       }))
   }
 

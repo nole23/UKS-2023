@@ -12,6 +12,7 @@ export class HeaderComponent {
   userData: any = {};
   project: any = {};
   currentTab: any = null;
+  currentHeaderTab: any = null;
 
   constructor(
     private router: Router,
@@ -25,6 +26,15 @@ export class HeaderComponent {
     ).subscribe((event: any) => {
       if (event.url.split('/')[1] === 'repository') {
         this.currentTab = event.url.split('/')[3];
+      }
+      if (event.url.split('/')[1] === '') {
+        this.currentHeaderTab = 'overview';
+      }
+      if (event.url.split('/')[1] === 'all-repo') {
+        this.currentHeaderTab = 'all-repo';
+      }
+      if (event.url.split('/')[1] === 'all-project') {
+        this.currentHeaderTab = 'all-project';
       }
     });
   }
